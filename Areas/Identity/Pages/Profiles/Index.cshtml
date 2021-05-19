@@ -1,0 +1,173 @@
+﻿@page
+@inject SignInManager<TuneEsportIfv2User> signInManager
+@inject UserManager<TuneEsportIfv2User> userManager
+@using TuneEsportIFv2.Areas.Identity.Data
+@model TuneEsportIFv2.Areas.Identity.Pages.Profiles.IndexModel
+@{
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap 4 Website Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        .fakeimg {
+            height: 200px;
+            background: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+    @*::::::::::::ProfilBillede::::::::::::*@
+    <div class="container" style="margin-top:30px">
+        <div class="row">
+            <div> </div>
+            <div class="col-sm-4">
+                <h2>About Me</h2>
+                <h5>Photo of me:</h5>
+                <div> <img class="img.fluid" style="width: 100%; height:auto;" src="/Pictures/Shortversion.jpg"></div>
+                <h3>INFO</h3>
+                <p>Lorem ipsum dolor sit ame.</p>
+            </div>
+            @*::::::::::::INFO VIEW og Rediger::::::::::::*@
+
+            <span>
+
+                <table class="table">
+                    <thead>
+                        <ol style="list-style-type: none; display: inline-block;">
+                            <li> @Html.DisplayNameFor(model => model.Info[0].profilPicture)</li>
+                            <li>
+                                @Html.DisplayNameFor(model => model.Info[0].rank)
+                            </li>
+                            <li>
+                                @Html.DisplayNameFor(model => model.Info[0].team)
+                            </li>
+                            <li>
+                                @Html.DisplayNameFor(model => model.Info[0].union)
+                            </li>
+                            <li>
+                                @Html.DisplayNameFor(model => model.Info[0].nick)
+                            </li>
+                        </ol>
+                    <th></th>
+
+                    </thead>
+
+
+                    <tbody>
+                        @foreach (var item in Model.Info)
+                        {
+                            <ol style="list-style-type: none; display: inline-block;">
+                                <li>
+                                    @Html.DisplayFor(modelItem => item.profilPicture)
+                                </li>
+                                <li>
+                                    @Html.DisplayFor(modelItem => item.rank)
+                                </li>
+                                <li>
+                                    @Html.DisplayFor(modelItem => item.team)
+                                </li>
+                                <li>
+                                    @Html.DisplayFor(modelItem => item.union)
+                                </li>
+                                <li>
+                                    @Html.DisplayFor(modelItem => item.nick)
+                                </li>
+                        <td>
+                            <a asp-page="/Infos/Edit" asp-route-id="@item.infoId">Edit</a> |
+                        </td>
+                        </ol>
+                    }
+                        </tbody>
+                    </table>
+                </span>
+                |
+
+                @*::::::::::::BESKRIVELSE::::::::::::*@
+
+                <hr class="d-sm-none">
+            </div>
+
+            <div table class="col-sm-8">
+                <h5>Beskrivelse</h5>
+                <p>
+                    <tbody>
+                        @foreach (var item in Model.Info)
+                        {
+                            <ol style="list-style-type: none; display: inline-block;">
+                                <li>
+                                    @Html.DisplayFor(modelItem => item.description)
+                                </li>
+
+                            </ol>
+                        }
+                    </tbody>
+                </p>
+                <br>
+            </div>
+        </div>
+
+        @*::::::::::::TræningsStatistik::::::::::::*@
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ScoreBoard[0].mapKnowledge)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ScoreBoard[0].Smokes)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ScoreBoard[0].EconomyKnowledge)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ScoreBoard[0].Tactics)
+                </th>
+
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.ScoreBoard)
+            { 
+                @if (item.TuneEsportIfv2User == userManager.GetUserId(User))
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.mapKnowledge)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Smokes)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EconomyKnowledge)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tactics)
+                        </td>
+                        @*<td>
+                                <a asp-page="./Edit" asp-route-id="@item.">Edit</a> |
+                                <a asp-page="./Details" asp-route-id="@item.mapsId">Details</a> |
+                                <a asp-page="./Delete" asp-route-id="@item.mapsId">Delete</a>
+                            </td>*@
+                    </tr>
+                }
+                
+            }
+            </tbody>
+        </table>
+
+
+
+    </body>
+</html>

@@ -1,0 +1,67 @@
+﻿@page
+@model TuneEsportIFv2.Pages.Infos.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Info[0].profilPicture)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Info[0].description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Info[0].rank)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Info[0].team)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Info[0].union)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Info[0].nick)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Info) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.profilPicture)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.rank)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.team)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.union)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nick)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.infoId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.infoId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.infoId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

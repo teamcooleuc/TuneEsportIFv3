@@ -1,0 +1,25 @@
+﻿@page
+
+@using TuneEsportIFv2.Areas.Identity.Data
+@inject SignInManager<TuneEsportIfv2User> SignInManager
+@inject UserManager<TuneEsportIfv2User> UserManager
+
+@model TuneEsportIFv2.Pages.Members.MembersModel
+
+
+
+@{
+    ViewBag.Title = "All Members";
+}
+
+<h1>All Users</h1>
+
+@foreach (var user in UserManager.Users)
+    {
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">@user.Name</h5>
+            </div>
+        </div>
+    }
+

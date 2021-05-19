@@ -1,0 +1,43 @@
+﻿@page
+@model TuneEsportIFv2.Pages.Maps.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Map[0].mapsName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Map[0].infernoStats)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Map) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.mapsName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.infernoStats)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.mapsId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.mapsId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.mapsId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,37 @@
+﻿@page
+@model TuneEsportIFv2.Pages.Scoreboard.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ScoreBoard[0].Records)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ScoreBoard) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Records)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ScoreId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ScoreId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ScoreId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

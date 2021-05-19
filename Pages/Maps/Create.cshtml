@@ -1,0 +1,40 @@
+﻿@page
+@model TuneEsportIFv2.Pages.Maps.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Map</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Map.mapsName" class="control-label"></label>
+                <input asp-for="Map.mapsName" class="form-control" />
+                <span asp-validation-for="Map.mapsName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Map.infernoStats" class="control-label"></label>
+                <input asp-for="Map.infernoStats" class="form-control" />
+                <span asp-validation-for="Map.infernoStats" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
