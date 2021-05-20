@@ -30,6 +30,10 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Account.Manage
 
         public string Username { get; set; }
 
+        public string Rank { get; set; }
+
+
+
 
         [TempData]
         public string StatusMessage { get; set; }
@@ -55,6 +59,9 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Profile Picture")]
             public byte[] ProfilePicture { get; set; }
 
+            //[Rank]
+            //[Display(Rank = "Rank")]
+            //public string Rank { get; set; }
         }
 
         private async Task LoadAsync(TuneEsportIfv2User user)

@@ -18,6 +18,7 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
 
             public List<ScoreBoard> ScoreBoard { get; set; }
 
+            public List<Map> maps { get; set; }
 
             public IInfoService InfoService;
             public IScoreBoardService ScoreBoardService;

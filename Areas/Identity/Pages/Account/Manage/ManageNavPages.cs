@@ -12,6 +12,8 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Account.Manage
 
         public static string Email => "Email";
 
+        public static string TræningsStatistik => "TræningsStatistik";
+
         public static string ChangePassword => "ChangePassword";
 
         public static string DownloadPersonalData => "DownloadPersonalData";
@@ -27,6 +29,9 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Account.Manage
         public static string IndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
 
         public static string EmailNavClass(ViewContext viewContext) => PageNavClass(viewContext, Email);
+
+        public static string TræningsNavClass(ViewContext viewContext) => PageNavClass(viewContext, TræningsStatistik);
+
 
         public static string ChangePasswordNavClass(ViewContext viewContext) => PageNavClass(viewContext, ChangePassword);
 

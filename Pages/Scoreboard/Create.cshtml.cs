@@ -6,23 +6,24 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using TuneEsportIFv2.Areas.Identity.Data;
 using TuneEsportIFv2.Data;
 using TuneEsportIFv2.Models;
+using TuneEsportIFv2.Services.Interfaces;
 
 namespace TuneEsportIFv2.Pages.Scoreboard
 {
-    public class CreateModel : PageModel
+    public class CreateModel : PageModel 
     {
         private readonly TuneEsportIFv2.Data.ApplicationDbContext _context;
         private readonly UserManager<TuneEsportIfv2User> _userManager;
 
         [BindProperty]
         public ScoreBoard ScoreBoard { get; set; }
-        [BindProperty]
+       
         public string Username { get; set; }
-        
-        
+
 
         public CreateModel(TuneEsportIFv2.Data.ApplicationDbContext context, UserManager<TuneEsportIfv2User> userManager)
         {
@@ -30,21 +31,16 @@ namespace TuneEsportIFv2.Pages.Scoreboard
             _userManager = userManager;
         }
 
-        //Should get the username and past it into creation of scoreboard field.
+        public List<Map> maps { get; set; }
+
         public async Task<IActionResult> OnGetAsync()
         {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
+            maps = await _context.Maps.ToListAsync();
 
-            await LoadAsync(user);
             return Page();
         }
 
-        
-
+        //Should get the username and past it into creation of scoreboard field.
         private async Task LoadAsync(TuneEsportIfv2User user)
         {
             var userName = await _userManager.GetUserNameAsync(user);

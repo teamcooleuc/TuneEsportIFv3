@@ -11,12 +11,42 @@
 <div>
     <h4>ScoreBoard</h4>
     <hr />
-    <dl class="row">
+    <dl class="d-lg-table-row">
+        <dt class="row">
+            
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.User.Identity)
+            </dt>
+            
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ScoreBoard.maps.mapsName)
+            </dt>
+           
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ScoreBoard.mapKnowledge)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ScoreBoard.mapKnowledge)
+            </dd>
+        </dt>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ScoreBoard.Records)
+            @Html.DisplayNameFor(model => model.ScoreBoard.Smokes)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ScoreBoard.Records)
+            @Html.DisplayFor(model => model.ScoreBoard.Smokes)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ScoreBoard.Tactics)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ScoreBoard.Tactics)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ScoreBoard.EconomyKnowledge)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ScoreBoard.EconomyKnowledge)
         </dd>
     </dl>
 </div>
@@ -24,3 +54,51 @@
     <a asp-page="./Edit" asp-route-id="@Model.ScoreBoard.ScoreId">Edit</a> |
     <a asp-page="./Index">Back to List</a>
 </div>
+
+@*<span>
+
+    <table class="table">
+        <thead>
+        <ol style="list-style-type: none; display: inline-block;">
+            <li>
+                @Html.DisplayNameFor(model => model.ScoreBoard[0].)
+            </li>
+            <li>
+                @Html.DisplayNameFor(model => model.Info[0].team)
+            </li>
+            <li>
+                @Html.DisplayNameFor(model => model.Info[0].union)
+            </li>
+            <li>
+                @Html.DisplayNameFor(model => model.Info[0].nick)
+            </li>
+        </ol>
+        <th></th>
+
+        </thead>
+
+
+        <tbody>
+        @foreach (var item in Model.Info)
+        {
+            <ol style="list-style-type: none; display: inline-block;">
+                <li>
+                    @Html.DisplayFor(modelItem => item.rank)
+                </li>
+                <li>
+                    @Html.DisplayFor(modelItem => item.team)
+                </li>
+                <li>
+                    @Html.DisplayFor(modelItem => item.union)
+                </li>
+                <li>
+                    @Html.DisplayFor(modelItem => item.nick)
+                </li>
+                <td>
+                    <a asp-page="/Infos/Edit" asp-route-id="@item.infoId">Edit</a> |
+                </td>
+            </ol>
+        }
+        </tbody>
+    </table>
+</span>*@

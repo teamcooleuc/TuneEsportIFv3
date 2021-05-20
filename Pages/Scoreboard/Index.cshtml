@@ -15,7 +15,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ScoreBoard[0].Records)
+                @Html.DisplayNameFor(model => model.ScoreBoard[0].maps.mapsName)
             </th>
             <th></th>
         </tr>
@@ -24,7 +24,7 @@
 @foreach (var item in Model.ScoreBoard) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Records)
+                @Html.DisplayFor(modelItem => item.maps.mapsName)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ScoreId">Edit</a> |

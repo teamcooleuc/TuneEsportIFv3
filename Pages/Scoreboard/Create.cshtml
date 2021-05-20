@@ -1,19 +1,44 @@
 ﻿@page
 @using TuneEsportIFv2.Areas.Identity.Data
+@using TuneEsportIFv2.Models
+@using TuneEsportIFv2.Services.Interfaces
 @model TuneEsportIFv2.Pages.Scoreboard.CreateModel
 @inject UserManager<TuneEsportIfv2User> UserManager
+@inject SignInManager<TuneEsportIfv2User> signInManager
 
 @{ ViewData["Title"] = "Create";
-                Layout = "~/Pages/Shared/_Layout.cshtml"; }
+    Layout = "~/Pages/Shared/_Layout.cshtml"; }
+
 
 <h1>Create</h1>
 
 <h4>ScoreBoard</h4>
 <hr />
+
+@*aleks add
+@foreach (var item in AspNetRoleManager<IdentityUserRole<userId>>)
+{
+    item.TuneEsportIfv2User == userManager.GetUserId(User)
+}*@
+
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="ScoreBoard.maps" class="control-label"></label>
+                <select>
+
+                    @foreach (var item in Model.maps)
+                    {
+                        <option value="@item.mapsId">@item.mapsName </option>
+                    }
+                </select>
+                <span asp-validation-for="ScoreBoard.maps" class="text-danger"></span>
+            </div>
+
+
             <div class="form-group">
                 <label asp-for="ScoreBoard.EconomyKnowledge" class="control-label"></label>
                 <input asp-for="ScoreBoard.EconomyKnowledge" class="form-control" />
