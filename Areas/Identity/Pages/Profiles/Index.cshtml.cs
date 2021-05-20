@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using TuneEsportIFv2.Areas.Identity.Data;
 using TuneEsportIFv2.Models;
 using TuneEsportIFv2.Services.Interfaces;
+using TuneEsportIFv2.Services.Services;
 
 namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
 {
@@ -15,6 +16,7 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
          [BindProperty]
 
             public List<Info> Info { get; set; }
+            public List<Game> Games{ get; set; }
 
             public List<ScoreBoard> ScoreBoard { get; set; }
 
@@ -22,19 +24,22 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
 
             public IInfoService InfoService;
             public IScoreBoardService ScoreBoardService;
+            public IGameService GameService;
 
-            public IndexModel(IInfoService service, IScoreBoardService SBService)
+            public IndexModel(IInfoService service, IScoreBoardService SBService, IGameService GService)
             {
                 InfoService = service;
                 ScoreBoardService = SBService;
+                GameService = GService;
             }
 
             private readonly IInfoService service;
 
-        public IActionResult OnGet(Info info, ScoreBoard scoreBoard, TuneEsportIfv2User tuneEsportIfv2User)
+        public IActionResult OnGet(Info info, ScoreBoard scoreBoard, TuneEsportIfv2User tuneEsportIfv2User, Game game)
         {
             Info = InfoService.GetAllInfo(info);
             ScoreBoard = ScoreBoardService.GetAllScoreBoards(scoreBoard);
+            Games = GameService.GetAllGames(game);
 
             return Page();
         }

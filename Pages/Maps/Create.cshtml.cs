@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using TuneEsportIFv2.Data;
 using TuneEsportIFv2.Models;
 
@@ -19,13 +20,19 @@ namespace TuneEsportIFv2.Pages.Maps
             _context = context;
         }
 
-        public IActionResult OnGet()
-        {
-            return Page();
-        }
+        
+       
 
         [BindProperty]
         public Map Map { get; set; }
+        public List<Game> Games { get; set; }
+
+        public async Task<IActionResult> OnGetAsync()
+        {
+            Games = await _context.Games.ToListAsync();
+
+            return Page();
+        }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()

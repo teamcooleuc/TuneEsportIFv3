@@ -27,6 +27,8 @@ namespace TuneEsportIFv2.Areas.Identity.Data
 
         public string Nick { get; set; }
 
+        public string GameName { get; set; }
+
         public ICollection<ScoreBoard> ScoreBoards { get; set; }
         
     }

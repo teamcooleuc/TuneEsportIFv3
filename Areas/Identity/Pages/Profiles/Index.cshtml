@@ -2,6 +2,7 @@
 @inject SignInManager<TuneEsportIfv2User> signInManager
 @inject UserManager<TuneEsportIfv2User> userManager
 @using TuneEsportIFv2.Areas.Identity.Data
+@using System.Security.Cryptography.X509Certificates
 @model TuneEsportIFv2.Areas.Identity.Pages.Profiles.IndexModel
 @{
 }
@@ -149,8 +150,52 @@
                 </tr>
             </thead>
             <tbody>
+
+            <div class="row">
+                <div class="col-4">
+                    <div class="list-group" id="list-tab" role="tablist">
+                        @foreach (var item in Model.Games)
+                        {
+                            <a class="list-group-item list-group-item-action" id="@Html.DisplayFor(modelItem => item.gameName)" data-toggle="list" href="#list-home" role="tab" aria-controls="@Html.DisplayFor(modelItem => item.gameName)">@Html.DisplayFor(modelItem => item.gameName)</a>
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="tab-content" id="nav-tabContent">
+                    @foreach (var item in Model.ScoreBoard)
+                    {
+                        <div class="tab-pane fade" id="@Html.DisplayFor(modelItem => item.games.gameName)" role="tabpanel" aria-labelledby="@Html.DisplayFor(modelItem => item.games.gameName)">
+
+                            @if (item.TuneEsportIfv2User == userManager.GetUserId(User))
+                            {
+                                <tr>
+                                    <th>
+                                        @Html.DisplayFor(modelItem => item.mapsName)
+                                    </th>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.mapKnowledge)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Smokes)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EconomyKnowledge)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Tactics)
+                                    </td>
+
+                                </tr>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+@*
             @foreach (var item in Model.ScoreBoard)
-            { 
+            {
                 @if (item.TuneEsportIfv2User == userManager.GetUserId(User))
                 {
                     <tr>
@@ -173,11 +218,12 @@
                                 <a asp-page="./Edit" asp-route-id="@item.">Edit</a> |
                                 <a asp-page="./Details" asp-route-id="@item.mapsId">Details</a> |
                                 <a asp-page="./Delete" asp-route-id="@item.mapsId">Delete</a>
-                            </td>*@
+                            </td>
                     </tr>
                 }
-                
-            }
+
+            }¨*@
+            
             </tbody>
         </table>
 
