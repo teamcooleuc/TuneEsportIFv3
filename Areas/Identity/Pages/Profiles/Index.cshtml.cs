@@ -20,21 +20,26 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
 
             public List<Map> maps { get; set; }
 
+            public List<Game> games { get; set; }
+
             public IInfoService InfoService;
             public IScoreBoardService ScoreBoardService;
+            public IGameService GameService;
 
-            public IndexModel(IInfoService service, IScoreBoardService SBService)
+            public IndexModel(IInfoService service, IScoreBoardService SBService, IGameService GService)
             {
                 InfoService = service;
                 ScoreBoardService = SBService;
+                GameService = GService;
             }
 
             private readonly IInfoService service;
 
-        public IActionResult OnGet(Info info, ScoreBoard scoreBoard, TuneEsportIfv2User tuneEsportIfv2User)
+        public IActionResult OnGet(Info info, ScoreBoard scoreBoard, TuneEsportIfv2User tuneEsportIfv2User, Game game)
         {
             Info = InfoService.GetAllInfo(info);
             ScoreBoard = ScoreBoardService.GetAllScoreBoards(scoreBoard);
+            games = GameService.GetAllGames(game);
 
             return Page();
         }
