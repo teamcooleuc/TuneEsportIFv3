@@ -12,8 +12,11 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using TuneEsportIFv2.Areas.Identity.Data;
+using TuneEsportIFv2.Models;
+using TuneEsportIFv2.Services.Services;
 
 namespace TuneEsportIFv2.Areas.Identity.Pages.Account
 {
@@ -24,23 +27,27 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Account
         private readonly UserManager<TuneEsportIfv2User> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly TuneEsportIFv2.Data.ApplicationDbContext _context;
 
         public RegisterModel(
             UserManager<TuneEsportIfv2User> userManager,
             SignInManager<TuneEsportIfv2User> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender, TuneEsportIFv2.Data.ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _context = context;
         }
 
         [BindProperty]
         public InputModel Input { get; set; }
 
         public string ReturnUrl { get; set; }
+
+        public List<Game> Games { get; set; } 
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
@@ -66,12 +73,20 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            [Display(Name = "Game name")]
+            public string GameName { get; set; }
         }
+
+        
 
         public async Task OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            Games = await _context.Games.ToListAsync();
+
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
@@ -84,7 +99,8 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Account
                 {
                     Name = Input.Name, 
                     UserName = Input.Email, 
-                    Email = Input.Email
+                    Email = Input.Email,
+                    GameName = Input.GameName
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)

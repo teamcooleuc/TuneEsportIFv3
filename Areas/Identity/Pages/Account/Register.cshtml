@@ -17,6 +17,20 @@
                 <input asp-for="Input.ProfilPicture" class="form-control" />
                 <span asp-validation-for="Input.ProfilPicture" class="text-danger"></span>
             </div>*@
+            
+        <div class="form-group">
+            <label asp-for="Input.GameName
+                   " class="control-label"></label>
+            <select asp-for="Input.GameName">
+
+                @foreach (var item in Model.Games)
+                {
+                    <option value="@item.gameName">@item.gameName </option>
+                }
+            </select>
+            <span asp-validation-for="Input.GameName" class="text-danger"></span>
+        </div>
+
             <div class="form-group">
                 <label asp-for="Input.Email"></label>
                 <input asp-for="Input.Email" class="form-control" />
