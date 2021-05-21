@@ -30,6 +30,8 @@ namespace TuneEsportIFv2.Models
 
         public int Assist { get; set; }
 
+        public string mapsName { get; set; }
+
         public DateTime Date { get; set; }
 
         public Map maps { get; set; }
