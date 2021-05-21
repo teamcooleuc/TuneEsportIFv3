@@ -176,6 +176,9 @@ namespace TuneEsportIFv2.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("GameName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -204,9 +207,6 @@ namespace TuneEsportIFv2.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
-
-                    b.Property<byte[]>("ProfilePicture")
-                        .HasColumnType("varbinary(max)");
 
                     b.Property<int>("Rank")
                         .HasColumnType("int");
@@ -293,11 +293,11 @@ namespace TuneEsportIFv2.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("gameName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("gamesgameID")
                         .HasColumnType("int");
-
-                    b.Property<string>("infernoStats")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("mapsName")
                         .HasColumnType("nvarchar(max)");
@@ -342,6 +342,9 @@ namespace TuneEsportIFv2.Migrations
 
                     b.Property<int?>("mapsId")
                         .HasColumnType("int");
+
+                    b.Property<string>("mapsName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ScoreId");
 

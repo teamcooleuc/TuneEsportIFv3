@@ -3,23 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TuneEsportIFv2.Migrations
 {
-    public partial class First : Migration
+    public partial class ProfilePicture : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "AspNetRoles",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
-                });
 
             migrationBuilder.CreateTable(
                 name: "AspNetUsers",
@@ -27,12 +14,12 @@ namespace TuneEsportIFv2.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProfilePicture = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Rank = table.Column<int>(type: "int", nullable: false),
                     Team = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Union = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Nick = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GameName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -197,7 +184,7 @@ namespace TuneEsportIFv2.Migrations
                     mapsId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     mapsName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    infernoStats = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    gameName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     gamesgameID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -221,6 +208,7 @@ namespace TuneEsportIFv2.Migrations
                     mapKnowledge = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Smokes = table.Column<int>(type: "int", nullable: false),
                     Tactics = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    mapsName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EconomyKnowledge = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     mapsId = table.Column<int>(type: "int", nullable: true),
                     gamesgameID = table.Column<int>(type: "int", nullable: true),
