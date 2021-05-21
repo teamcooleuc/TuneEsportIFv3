@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using TuneEsportIFv2.Areas.Identity.Data;
+using TuneEsportIFv2.Areas.Identity.Pages.Account;
 using TuneEsportIFv2.Data;
 using TuneEsportIFv2.Models;
 
@@ -19,9 +21,6 @@ namespace TuneEsportIFv2.Pages.Maps
         {
             _context = context;
         }
-
-        
-       
 
         [BindProperty]
         public Map Map { get; set; }

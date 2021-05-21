@@ -32,7 +32,13 @@
 
                     @foreach (var item in Model.maps)
                     {
-                        <option value="@item.mapsName">@item.mapsName </option>
+                        @foreach (var item1 in Model.User1)
+                        {
+                            @if (item.gameName == item1.GameName)
+                            {
+                                <option value="@item.mapsName">@item.mapsName </option>
+                            }
+                        }
                     }
                 </select>
                 <span asp-validation-for="ScoreBoard.mapsName" class="text-danger"></span>

@@ -26,6 +26,13 @@ namespace TuneEsportIFv2.Models
         public string mapsName { get; set; }
 
         public string EconomyKnowledge { get; set; }
+        public int Kills { get; set; }
+
+        public int Death { get; set; }
+
+        public int Assist { get; set; }
+
+        public DateTime Date { get; set; }
 
         public Map maps { get; set; }
 

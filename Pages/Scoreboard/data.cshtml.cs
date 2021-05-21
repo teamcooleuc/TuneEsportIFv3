@@ -1,43 +1,40 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TuneEsportIFv2.Areas.Identity.Data;
-using TuneEsportIFv2.Data;
 using TuneEsportIFv2.Models;
-using TuneEsportIFv2.Services.Interfaces;
 
 namespace TuneEsportIFv2.Pages.Scoreboard
 {
-    public class CreateModel : PageModel 
+    public class dataModel : PageModel
     {
         private readonly TuneEsportIFv2.Data.ApplicationDbContext _context;
         private readonly UserManager<TuneEsportIfv2User> _userManager;
 
         [BindProperty]
         public ScoreBoard ScoreBoard { get; set; }
-       
+
         public string Username { get; set; }
 
+        public List<ScoreBoard> ScoreBoards { get; set; }
+        public List<Map> Maps { get; set; }
 
-        public CreateModel(TuneEsportIFv2.Data.ApplicationDbContext context, UserManager<TuneEsportIfv2User> userManager)
+
+        public dataModel(TuneEsportIFv2.Data.ApplicationDbContext context, UserManager<TuneEsportIfv2User> userManager)
         {
             _context = context;
             _userManager = userManager;
         }
 
-        public List<Map> maps { get; set; }
-        public List<TuneEsportIfv2User> User1 { get; set; }
-
         public async Task<IActionResult> OnGetAsync()
         {
-            maps = await _context.Maps.ToListAsync();
-            User1 = await _context.TuneEsportIfv2Users.ToListAsync();
+            Maps = await _context.Maps.ToListAsync();
+            ScoreBoards = await _context.ScoreBoards.ToListAsync();
 
             return Page();
         }
@@ -46,7 +43,7 @@ namespace TuneEsportIFv2.Pages.Scoreboard
         private async Task LoadAsync(TuneEsportIfv2User user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
-            
+
 
             Username = userName;
 
@@ -71,6 +68,7 @@ namespace TuneEsportIFv2.Pages.Scoreboard
             }
 
             ScoreBoard.TuneEsportIfv2User = user.Id;
+            ScoreBoard.Date = DateTime.Today;
 
             _context.ScoreBoards.Add(ScoreBoard);
             await _context.SaveChangesAsync();

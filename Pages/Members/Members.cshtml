@@ -14,12 +14,46 @@
 
 <h1>All Users</h1>
 
-@foreach (var user in UserManager.Users)
-    {
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5 class="card-title">@user.Name</h5>
-            </div>
-        </div>
+<table class="table">>
+    <thead>
+        <tr>
+            <th>
+                Navn
+            </th>
+            <th>
+                Nick
+            </th>
+            <th>
+                Team
+            </th>
+            <th>
+                Union
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in UserManager.Users) {
+        <tr>
+            <td>
+                <div class="card mb-3">@Html.DisplayFor(modelItem => item.Name)</div>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nick)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Team)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Union)
+            </td>
+            <td>
+                @*<a asp-page="./Edit" asp-route-id="@item.">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>*@
+            </td>
+        </tr>
     }
+    </tbody>
+</table>
 
