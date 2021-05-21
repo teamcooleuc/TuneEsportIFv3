@@ -17,6 +17,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Map[0].mapsName)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Map[0].gameName)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -25,6 +28,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.mapsName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gameName)
             </td>
            
             <td>

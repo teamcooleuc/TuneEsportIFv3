@@ -1,0 +1,124 @@
+﻿@page
+@using TuneEsportIFv2.Areas.Identity.Data
+@using TuneEsportIFv2.Models
+@using TuneEsportIFv2.Services.Interfaces
+@using System.Security.Cryptography.X509Certificates
+@model TuneEsportIFv2.Pages.Scoreboard.dataModel
+@{
+}
+@inject UserManager<TuneEsportIfv2User> UserManager
+@inject SignInManager<TuneEsportIfv2User> signInManager
+
+@{ ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml"; }
+
+<h4>Insert data</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="ScoreBoard.Kills" class="control-label"></label>
+                <input asp-for="ScoreBoard.Kills" class="form-control" />
+                <span asp-validation-for="ScoreBoard.Kills" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ScoreBoard.Death" class="control-label"></label>
+                <input asp-for="ScoreBoard.Death" class="form-control" />
+                <span asp-validation-for="ScoreBoard.Death" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ScoreBoard.Assist" class="control-label"></label>
+                <input asp-for="ScoreBoard.Assist" class="form-control" />
+                <span asp-validation-for="ScoreBoard.Assist" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ScoreBoard.mapsName" class="control-label"></label>
+                <select asp-for="ScoreBoard.mapsName">
+
+                    @foreach (var item in Model.Maps)
+                    {
+                        <option value="@item.mapsName">@item.mapsName </option>
+                    }
+                </select>
+                <span asp-validation-for="ScoreBoard.mapsName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ScoreBoards[0].Kills)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ScoreBoards[0].Death)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ScoreBoards[0].Assist)
+                </th>
+                <th>
+                    KDA
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ScoreBoards[0].maps)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ScoreBoards[0].Date)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.ScoreBoards)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kills)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Death)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Assist)
+                </td>
+                <td>
+
+                    @{
+                        double Calculation;
+                    }
+                        @(Calculation = (item.Kills / item.Death))
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.mapsName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date.Date)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ScoreId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ScoreId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ScoreId">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

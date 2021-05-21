@@ -14,7 +14,9 @@ namespace TuneEsportIFv2.Areas.Identity.Data
     {
         [PersonalData]
         public string Name { get; set; }
-        
+
+        public byte[] ProfilePicture { get; set; }
+
         public string Description { get; set; }
 
         public int Rank { get; set; }
