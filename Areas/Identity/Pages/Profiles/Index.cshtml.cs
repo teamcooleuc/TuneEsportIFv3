@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using TuneEsportIFv2.Areas.Identity.Data;
@@ -13,33 +14,30 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
 {
     public class IndexModel : PageModel
     {
-         [BindProperty]
+            [BindProperty]
 
-            public List<Info> Info { get; set; }
             public List<Game> Games{ get; set; }
 
             public List<ScoreBoard> ScoreBoard { get; set; }
 
             public List<Map> maps { get; set; }
 
-            public List<Game> games { get; set; }
+            public string TuneEsportIfv2User { get; set; }
 
-            public IInfoService InfoService;
             public IScoreBoardService ScoreBoardService;
             public IGameService GameService;
-
+            
             public IndexModel(IInfoService service, IScoreBoardService SBService, IGameService GService)
             {
-                InfoService = service;
                 ScoreBoardService = SBService;
                 GameService = GService;
+        
             }
 
             private readonly IInfoService service;
 
-        public IActionResult OnGet(Info info, ScoreBoard scoreBoard, TuneEsportIfv2User tuneEsportIfv2User, Game game)
+        public IActionResult OnGet(Info info, ScoreBoard scoreBoard, Game game)
         {
-            Info = InfoService.GetAllInfo(info);
             ScoreBoard = ScoreBoardService.GetAllScoreBoards(scoreBoard);
             Games = GameService.GetAllGames(game);
 
@@ -53,7 +51,9 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
                     return Page();
                 }
 
-                return RedirectToPage("./Index");
+                //UserInfo.TuneEsportIfv2User = user.Id;
+
+            return RedirectToPage("./Index");
             }
         }
     }

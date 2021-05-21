@@ -28,7 +28,7 @@
 <body>
 
     @*::::::::::::ProfilBillede::::::::::::*@
-    <div class="container" style="margin-top:30px">
+    @*<div class="container" style="margin-top:30px">
         <div class="row">
             <div> </div>
             <div class="col-sm-4">
@@ -37,79 +37,82 @@
                 <div> <img class="img.fluid" style="width: 100%; height:auto;" src="/Pictures/Shortversion.jpg"></div>
                 <h3>INFO</h3>
                 <p>Lorem ipsum dolor sit ame.</p>
-            </div>
+            </div>*@
             @*::::::::::::INFO VIEW og Rediger::::::::::::*@
 
             <span>
 
-                <table class="table">
+                @*<table class="table">
                     <thead>
                         <ol style="list-style-type: none; display: inline-block;">
                             <li>
-                                @Html.DisplayNameFor(model => model.Info[0].rank)
+                                @Html.DisplayNameFor(Model => Model.[0].Team)
                             </li>
                             <li>
-                                @Html.DisplayNameFor(model => model.Info[0].team)
+                                @Html.DisplayNameFor(Model => Model.UserInfo[0].Nick)
                             </li>
                             <li>
-                                @Html.DisplayNameFor(model => model.Info[0].union)
+                                @Html.DisplayNameFor(Model => Model.UserInfo[0].Rank)
                             </li>
                             <li>
-                                @Html.DisplayNameFor(model => model.Info[0].nick)
+                                @Html.DisplayNameFor(Model => Model.UserInfo[0].Union)
                             </li>
                         </ol>
                     <th></th>
 
-                    </thead>
+                    </thead>*@
 
-
+                <table class="table">
                     <tbody>
-                        @foreach (var item in Model.Info)
-                        {
-                            <ol style="list-style-type: none; display: inline-block;">
-                                <li>
-                                    @Html.DisplayFor(modelItem => item.rank)
-                                </li>
-                                <li>
-                                    @Html.DisplayFor(modelItem => item.team)
-                                </li>
-                                <li>
-                                    @Html.DisplayFor(modelItem => item.union)
-                                </li>
-                                <li>
-                                    @Html.DisplayFor(modelItem => item.nick)
-                                </li>
-                        <td>
-                            <a asp-page="/Infos/Edit" asp-route-id="@item.infoId">Edit</a> |
-                        </td>
-                        </ol>
-                    }
-                        </tbody>
-                    </table>
-                </span>
-                |
+                        @foreach (var item in userManager.Users)
+                        {@*@if (item.TuneEsportIfv2User == userManager.GetUserId(User))*@ {
 
-                @*::::::::::::BESKRIVELSE::::::::::::*@
+                        <ol style="list-style-type: none; display: inline-block;">
+                            <li>
+                                @Html.DisplayFor(modelItem => item.Team)
+                            </li>
+                            <li>
+                                @Html.DisplayFor(modelItem => item.Nick)
+                            </li>
+                            <li>
+                                @Html.DisplayFor(modelItem => item.Rank)
+                            </li>
+                            <li>
+                                @Html.DisplayFor(modelItem => item.Union)
+                            </li>
+                    <td>
+                        <a asp-page="/Infos/Edit" asp-route-id="@item.Id">Edit</a> |
+                    </td>
+                    </ol>}
+                                }
+                        </
+                        tbody >
+                        </
+                        table >
+                        </
+                        span >
+                        |
 
-                <hr class="d-sm-none">
+
+                        ::::::::::::BESKRIVELSE::::::::::::
+
+                        <hr class="d-sm-none">
             </div>
 
             <div table class="col-sm-8">
-               
+
                 <h5>Beskrivelse</h5>
-               
-                
+
+
                 <p>
                     <tbody>
-                        @foreach (var item in Model.Info)
+                        @foreach (var item in userManager.Users)
                         {
-                            <ol style="list-style-type: none; display: inline-block;">
-                                <li>
-                                    @Html.DisplayFor(modelItem => item.description)
-                                </li>
-                            </ol>
-
-                        }
+            <ol style="list-style-type: none; display: inline-block;">
+                <li>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </li>
+            </ol>}
                     </tbody>
                 </p>
                 <br>
@@ -117,12 +120,13 @@
         </div>
 
         @*::::::::::::TræningsStatistik::::::::::::*@
-    
-<html>
-<body>
 
-    <button onclick="document.location='/scoreboard/index'">Rediger TræningStatistik</button>
+        <html>
+        <body>
 
+            <button onclick="document.location='/scoreboard/index'">Rediger TræningStatistik</button>
+
+        </body>
 </body>
 </html>
 
@@ -193,40 +197,4 @@
                     }
                 </div>
             </div>
-@*
-            @foreach (var item in Model.ScoreBoard)
-            {
-                @if (item.TuneEsportIfv2User == userManager.GetUserId(User))
-                {
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => item.maps)
-                        </th>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.mapKnowledge)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Smokes)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EconomyKnowledge)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Tactics)
-                        </td>
-                        @*<td>
-                                <a asp-page="./Edit" asp-route-id="@item.">Edit</a> |
-                                <a asp-page="./Details" asp-route-id="@item.mapsId">Details</a> |
-                                <a asp-page="./Delete" asp-route-id="@item.mapsId">Delete</a>
-                            </td>
-                    </tr>
-                }
-
-            }¨*@
             
-            </tbody>
-        </table>
-
-
-</body>
-</html>
