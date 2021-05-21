@@ -48,6 +48,9 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Full name")]
             public string Name { get; set; }
 
+            [Display(Name = "Profile Picture")]
+            public byte[] ProfilePicture { get; set; }
+
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
@@ -56,12 +59,6 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Account.Manage
             [Display(Description = "Description")]
             public string Description { get; set; }
             
-            [Display(Name = "Profile Picture")]
-            public byte[] ProfilePicture { get; set; }
-
-            //[Rank]
-            //[Display(Rank = "Rank")]
-            //public string Rank { get; set; }
         }
 
         private async Task LoadAsync(TuneEsportIfv2User user)
@@ -76,8 +73,8 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Account.Manage
             {
                 Name = user.Name,
                 PhoneNumber = phoneNumber,
-                Description = user.Description,
-                ProfilePicture = profilePicture
+                ProfilePicture = profilePicture,
+                Description = user.Description
 
             };
         }
