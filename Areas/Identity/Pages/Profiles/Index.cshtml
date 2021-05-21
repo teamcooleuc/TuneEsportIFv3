@@ -131,7 +131,7 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.ScoreBoard[0].mapsName)
+                        @Html.DisplayNameFor(model => model.ScoreBoard[0].maps.mapsName)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.ScoreBoard[0].mapKnowledge)
@@ -200,7 +200,7 @@
                 {
                     <tr>
                         <th>
-                            @Html.DisplayFor(modelItem => item.mapsName)
+                            @Html.DisplayNameFor(model => item.maps)
                         </th>
                         <td>
                             @Html.DisplayFor(modelItem => item.mapKnowledge)
