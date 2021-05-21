@@ -128,23 +128,23 @@
 
 
 <table class="table">
-    <thead>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ScoreBoard[0].mapsName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ScoreBoard[0].mapKnowledge)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ScoreBoard[0].Smokes)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ScoreBoard[0].EconomyKnowledge)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ScoreBoard[0].Tactics)
-        </th>
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ScoreBoard[0].maps.mapsName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ScoreBoard[0].mapKnowledge)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ScoreBoard[0].Smokes)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ScoreBoard[0].EconomyKnowledge)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ScoreBoard[0].Tactics)
+                    </th>
 
                     <th></th>
                 </tr>
@@ -172,7 +172,7 @@
                             {
                                 <tr>
                                     <th>
-                                        @Html.DisplayFor(modelItem => item.mapsName)
+                                        @Html.DisplayFor(modelItem => item.maps.mapsName)
                                     </th>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.mapKnowledge)
@@ -200,7 +200,7 @@
                 {
                     <tr>
                         <th>
-                            @Html.DisplayFor(modelItem => item.mapsName)
+                            @Html.DisplayNameFor(model => item.maps)
                         </th>
                         <td>
                             @Html.DisplayFor(modelItem => item.mapKnowledge)

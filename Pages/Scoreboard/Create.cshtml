@@ -27,15 +27,15 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
-                <label asp-for="ScoreBoard.mapsName" class="control-label"></label>
-                <select asp-for="ScoreBoard.mapsName">
+                <label asp-for="ScoreBoard.maps" class="control-label"></label>
+                <select>
 
                     @foreach (var item in Model.maps)
                     {
-                        <option value="@item.mapsName">@item.mapsName </option>
+                        <option value="@item.mapsId">@item.mapsName </option>
                     }
                 </select>
-                <span asp-validation-for="ScoreBoard.mapsName" class="text-danger"></span>
+                <span asp-validation-for="ScoreBoard.maps" class="text-danger"></span>
             </div>
 
 
@@ -65,15 +65,6 @@
         </form>
     </div>
 </div>
-
-
-<li class="nav-item" style="align-self: center;">
-    @if (UserManager.GetUserAsync(User).Result.ProfilePicture != null)
-    {
-        <img style="width:40px;height:40px; object-fit:cover; border-radius:30px" src="data:image/*;base64,@(Convert.ToBase64String(UserManager.GetUserAsync(User).Result.ProfilePicture))">
-    }
-</li>
-
 
 
 <div>

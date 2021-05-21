@@ -56,12 +56,6 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Account.Manage
             [Display(Description = "Description")]
             public string Description { get; set; }
             
-            [Display(Name = "Profile Picture")]
-            public byte[] ProfilePicture { get; set; }
-
-            //[Rank]
-            //[Display(Rank = "Rank")]
-            //public string Rank { get; set; }
         }
 
         private async Task LoadAsync(TuneEsportIfv2User user)
@@ -75,8 +69,7 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Account.Manage
             {
                 Name = user.Name,
                 PhoneNumber = phoneNumber,
-                Description = user.Description,
-                ProfilePicture = user.ProfilePicture
+                Description = user.Description
 
             };
         }
@@ -121,17 +114,6 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Account.Manage
             if (Input.Name != user.Name)
             {
                 user.Name = Input.Name;
-            }
-
-            if (Request.Form.Files.Count > 0)
-            {
-                IFormFile file = Request.Form.Files.FirstOrDefault();
-                using (var dataStream = new MemoryStream())
-                {
-                    await file.CopyToAsync(dataStream);
-                    user.ProfilePicture = dataStream.ToArray();
-                }
-                await _userManager.UpdateAsync(user);
             }
 
             await _signInManager.RefreshSignInAsync(user);

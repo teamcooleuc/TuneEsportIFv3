@@ -23,8 +23,6 @@ namespace TuneEsportIFv2.Models
 
         public string Tactics { get; set; }
 
-        public string mapsName { get; set; }
-
         public string EconomyKnowledge { get; set; }
 
         public Map maps { get; set; }
