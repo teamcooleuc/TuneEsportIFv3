@@ -3,23 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TuneEsportIFv2.Migrations
 {
-    public partial class first1 : Migration
+    public partial class ProfilePicture : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "AspNetRoles",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
-                });
 
             migrationBuilder.CreateTable(
                 name: "AspNetUsers",
@@ -27,6 +14,12 @@ namespace TuneEsportIFv2.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Rank = table.Column<int>(type: "int", nullable: false),
+                    Team = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Union = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Nick = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GameName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -45,6 +38,37 @@ namespace TuneEsportIFv2.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Games",
+                columns: table => new
+                {
+                    gameID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    gameName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Games", x => x.gameID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Info",
+                columns: table => new
+                {
+                    infoId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    profilPicture = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    rank = table.Column<int>(type: "int", nullable: false),
+                    team = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    union = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    nick = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Info", x => x.infoId);
                 });
 
             migrationBuilder.CreateTable(
@@ -153,6 +177,67 @@ namespace TuneEsportIFv2.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Maps",
+                columns: table => new
+                {
+                    mapsId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    mapsName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    gameName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    gamesgameID = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Maps", x => x.mapsId);
+                    table.ForeignKey(
+                        name: "FK_Maps_Games_gamesgameID",
+                        column: x => x.gamesgameID,
+                        principalTable: "Games",
+                        principalColumn: "gameID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ScoreBoard",
+                columns: table => new
+                {
+                    ScoreId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Records = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    mapKnowledge = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Smokes = table.Column<int>(type: "int", nullable: false),
+                    Tactics = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    mapsName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EconomyKnowledge = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    mapsId = table.Column<int>(type: "int", nullable: true),
+                    gamesgameID = table.Column<int>(type: "int", nullable: true),
+                    TuneEsportIfv2User = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TuneEsportIfv2UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ScoreBoard", x => x.ScoreId);
+                    table.ForeignKey(
+                        name: "FK_ScoreBoard_AspNetUsers_TuneEsportIfv2UserId",
+                        column: x => x.TuneEsportIfv2UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ScoreBoard_Games_gamesgameID",
+                        column: x => x.gamesgameID,
+                        principalTable: "Games",
+                        principalColumn: "gameID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ScoreBoard_Maps_mapsId",
+                        column: x => x.mapsId,
+                        principalTable: "Maps",
+                        principalColumn: "mapsId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -191,6 +276,26 @@ namespace TuneEsportIFv2.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Maps_gamesgameID",
+                table: "Maps",
+                column: "gamesgameID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ScoreBoard_gamesgameID",
+                table: "ScoreBoard",
+                column: "gamesgameID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ScoreBoard_mapsId",
+                table: "ScoreBoard",
+                column: "mapsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ScoreBoard_TuneEsportIfv2UserId",
+                table: "ScoreBoard",
+                column: "TuneEsportIfv2UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -211,10 +316,22 @@ namespace TuneEsportIFv2.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Info");
+
+            migrationBuilder.DropTable(
+                name: "ScoreBoard");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Maps");
+
+            migrationBuilder.DropTable(
+                name: "Games");
         }
     }
 }

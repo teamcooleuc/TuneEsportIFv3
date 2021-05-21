@@ -70,13 +70,14 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Account.Manage
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
             Username = userName;
+            var profilePicture = user.ProfilePicture;
 
             Input = new InputModel
             {
                 Name = user.Name,
                 PhoneNumber = phoneNumber,
                 Description = user.Description,
-                ProfilePicture = user.ProfilePicture
+                ProfilePicture = profilePicture
 
             };
         }
