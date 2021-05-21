@@ -48,6 +48,9 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Full name")]
             public string Name { get; set; }
 
+            [Display(Name = "Profile Picture")]
+            public byte[] ProfilePicture { get; set; }
+
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
@@ -64,11 +67,13 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Account.Manage
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
             Username = userName;
+            var profilePicture = user.ProfilePicture;
 
             Input = new InputModel
             {
                 Name = user.Name,
                 PhoneNumber = phoneNumber,
+                ProfilePicture = profilePicture,
                 Description = user.Description
 
             };
@@ -114,6 +119,17 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Account.Manage
             if (Input.Name != user.Name)
             {
                 user.Name = Input.Name;
+            }
+
+            if (Request.Form.Files.Count > 0)
+            {
+                IFormFile file = Request.Form.Files.FirstOrDefault();
+                using (var dataStream = new MemoryStream())
+                {
+                    await file.CopyToAsync(dataStream);
+                    user.ProfilePicture = dataStream.ToArray();
+                }
+                await _userManager.UpdateAsync(user);
             }
 
             await _signInManager.RefreshSignInAsync(user);
