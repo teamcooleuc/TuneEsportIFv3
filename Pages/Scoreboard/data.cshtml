@@ -1,7 +1,6 @@
 ﻿@page
 @using TuneEsportIFv2.Areas.Identity.Data
 @using TuneEsportIFv2.Models
-@using TuneEsportIFv2.Services.Interfaces
 @using System.Security.Cryptography.X509Certificates
 @model TuneEsportIFv2.Pages.Scoreboard.dataModel
 @{
@@ -78,7 +77,7 @@
                     KDA
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.ScoreBoards[0].maps)
+                    @Html.DisplayNameFor(model => model.ScoreBoards[0].mapsName)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.ScoreBoards[0].Date)

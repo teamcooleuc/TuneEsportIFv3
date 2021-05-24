@@ -11,24 +11,24 @@ namespace TuneEsportIFv2.Models
     public class TrainingStats
     {
         [Key]
+        [Display(Name = "Trainings stats Id")]
         public int TrainingStatId { get; set; }
-
-        public string Records { get; set; }
-
+        [Display(Name = "Map knowledge")]
         public string mapKnowledge { get; set; }
-
+        [Display(Name = "Smokes")]
         public int Smokes { get; set; }
-
+        [Display(Name = "Tactics")]
         public string Tactics { get; set; }
-
+        [Display(Name = "Economy knowledge")]
         public string EconomyKnowledge { get; set; }
+        [Display(Name = "Map name")]
         public string mapsName { get; set; }
+        [Display(Name = "Date")]
         public DateTime Date { get; set; }
-
-        public Map maps { get; set; }
 
         public Game games { get; set; }
 
+        [Display(Name = "User")]
         public string TuneEsportIfv2User { get; set; }
     }
 }
