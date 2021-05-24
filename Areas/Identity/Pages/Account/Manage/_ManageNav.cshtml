@@ -7,8 +7,9 @@
     <li class="nav-item"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profile</a></li>
     <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a></li>
     <li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Password</a></li>
-    <li class="nav-item"><a class="nav-link @ManageNavPages.TræningsNavClass(ViewContext)" id="index" asp-page="/Profiles/Index">Trænings Statistik</a></li>
+    <li class="nav-item"><a class="nav-link @ManageNavPages.TræningsNavClass(ViewContext)" id="index" asp-page="/Profiles/Index">TræningsStatistik</a></li>
     <li class="nav-item"><a class="nav-link @ManageNavPages.MembersNavClass(ViewContext)" id="index" asp-page="/Members/Members">Members</a></li>
+    <li class="nav-item"><a class="nav-link @ManageNavPages.ProfileInfoNavClass(ViewContext)" id="index" asp-page="/Profiles/Index">Profile Info</a></li>
 
     @if (hasExternalLogins)
     {

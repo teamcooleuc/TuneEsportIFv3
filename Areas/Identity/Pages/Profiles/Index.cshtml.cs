@@ -67,7 +67,7 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
                 [Required]
                 [DataType(DataType.Text)]
                 [Display(Name = "Rank")]
-                public int Rank { get; set; }
+                public string Rank { get; set; }
 
                 [Required]
                 [Display(Name = "Team")]

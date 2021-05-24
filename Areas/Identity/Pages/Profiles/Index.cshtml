@@ -82,7 +82,7 @@
     <thead>
     <tr>
         <th>
-            Navn
+            UserName
         </th>
         <th>
             Team
@@ -99,53 +99,15 @@
     </tr>
     </thead>
     <tbody>
-    @foreach (var item in userManager.Users)
-    { @if(item.Id == userManager.GetUserId(User))
-        
-        {
-            <tr>
-                <td>
-                    @item.UserName
-                </td>
-                <td>
-                    @item.Team
-                </td>
-                <td>
-                    @item.Nick
-                </td>
-                <td>
-                    @item.Rank
-                </td>
-                <td>
-                    @item.ClubName
-                </td>
- 
- 
-            </tr>
-        }
-    }
     </tbody>
  
 </table>
-    
 
-                       
+                        @*::::::::::::BESKRIVELSE::::::::::::*@
 
-
-
-    
-
-
-
-
-                        ::::::::::::BESKRIVELSE::::::::::::
-
-                        <hr class="d-sm-none">
-            </div>
-
-            <div table class="col-sm-8">
-
-                    <h5>Beskrivelse</h5>
+<hr class="d-sm-none">
+<div table class="col-sm-8">
+    <h5>Beskrivelse</h5>
 
 
                 <p>
@@ -161,8 +123,7 @@
                 </p>
                 <br>
             </div>
-        </div>
-
+      
         @*::::::::::::TræningsStatistik::::::::::::*@
 
         <html>

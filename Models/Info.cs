@@ -18,11 +18,11 @@ namespace TuneEsportIFv2.Models
 
         public string description { get; set; }
 
-        public int rank { get; set; }
+        public string rank { get; set; }
 
         public string team { get; set; }
 
-        public string union { get; set; }
+        public string clubName { get; set; }
         [Required]
         public string nick { get; set; }
 

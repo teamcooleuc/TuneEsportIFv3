@@ -19,7 +19,7 @@ namespace TuneEsportIFv2.Areas.Identity.Data
 
         public string Description { get; set; }
 
-        public int Rank { get; set; }
+        public string Rank { get; set; }
 
         public string Team { get; set; }
 
