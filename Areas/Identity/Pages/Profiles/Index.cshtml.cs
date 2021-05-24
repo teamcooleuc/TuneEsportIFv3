@@ -14,9 +14,14 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
 {
     public class IndexModel : PageModel
     {
-            [BindProperty]
+        private readonly TuneEsportIFv2.Data.ApplicationDbContext _context;
+
+        [BindProperty]
 
             public List<Game> Games{ get; set; }
+
+            public List<TrainingStats>TrainingStats { get; set; }
+            public TrainingStats TrainingStat { get; set; }
 
             public List<ScoreBoard> ScoreBoard { get; set; }
 
@@ -27,8 +32,9 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
             public IScoreBoardService ScoreBoardService;
             public IGameService GameService;
             
-            public IndexModel(IInfoService service, IScoreBoardService SBService, IGameService GService)
+            public IndexModel(IInfoService service, IScoreBoardService SBService, IGameService GService, TuneEsportIFv2.Data.ApplicationDbContext context)
             {
+                _context = context;
                 ScoreBoardService = SBService;
                 GameService = GService;
         
@@ -40,6 +46,7 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
         {
             ScoreBoard = ScoreBoardService.GetAllScoreBoards(scoreBoard);
             Games = GameService.GetAllGames(game);
+            TrainingStats = _context.TrainingStats.ToList();
 
             return Page();
         }

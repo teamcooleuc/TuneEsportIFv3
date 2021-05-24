@@ -38,166 +38,244 @@
                 <h3>INFO</h3>
                 <p>Lorem ipsum dolor sit ame.</p>
             </div>*@
-            @*::::::::::::INFO VIEW og Rediger::::::::::::*@
+    @*::::::::::::INFO VIEW og Rediger::::::::::::*@
 
-            <span>
+    <span>
 
-                @*<table class="table">
-                    <thead>
+        @*<table class="table">
+            <thead>
+                <ol style="list-style-type: none; display: inline-block;">
+                    <li>
+                        @Html.DisplayNameFor(Model => Model.[0].Team)
+                    </li>
+                    <li>
+                        @Html.DisplayNameFor(Model => Model.UserInfo[0].Nick)
+                    </li>
+                    <li>
+                        @Html.DisplayNameFor(Model => Model.UserInfo[0].Rank)
+                    </li>
+                    <li>
+                        @Html.DisplayNameFor(Model => Model.UserInfo[0].Union)
+                    </li>
+                </ol>
+            <th></th>
+
+            </thead>*@
+
+        <table class="table">
+            <tbody>
+                @foreach (var item in userManager.Users)
+                {@*@if (item.TuneEsportIfv2User == userManager.GetUserId(User))*@ {
+
+                    <ol style="list-style-type: none; display: inline-block;">
+                        <li>
+                            @Html.DisplayFor(modelItem => item.Team)
+                        </li>
+                        <li>
+                            @Html.DisplayFor(modelItem => item.Nick)
+                        </li>
+                        <li>
+                            @Html.DisplayFor(modelItem => item.Rank)
+                        </li>
+                        <li>
+                            @Html.DisplayFor(modelItem => item.ClubName)
+                        </li>
+                <td>
+                    <a asp-page="/Infos/Edit" asp-route-id="@item.Id">Edit</a> |
+                </td>
+                </ol>}
+        }
+                </
+                tbody >
+                </
+                table >
+                </
+                span >
+                |
+
+
+                ::::::::::::BESKRIVELSE::::::::::::
+
+                <hr class="d-sm-none">
+                </div>
+
+                <div table class="col-sm-8">
+
+                    <h5>Beskrivelse</h5>
+
+
+                    <p>
+                <tbody>
+                    @foreach (var item in userManager.Users)
+                    {
                         <ol style="list-style-type: none; display: inline-block;">
                             <li>
-                                @Html.DisplayNameFor(Model => Model.[0].Team)
-                            </li>
-                            <li>
-                                @Html.DisplayNameFor(Model => Model.UserInfo[0].Nick)
-                            </li>
-                            <li>
-                                @Html.DisplayNameFor(Model => Model.UserInfo[0].Rank)
-                            </li>
-                            <li>
-                                @Html.DisplayNameFor(Model => Model.UserInfo[0].Union)
+                                @Html.DisplayFor(modelItem => item.Description)
                             </li>
                         </ol>
-                    <th></th>
-
-                    </thead>*@
-
-                <table class="table">
-                    <tbody>
-                        @foreach (var item in userManager.Users)
-                        {@*@if (item.TuneEsportIfv2User == userManager.GetUserId(User))*@ {
-
-                        <ol style="list-style-type: none; display: inline-block;">
-                            <li>
-                                @Html.DisplayFor(modelItem => item.Team)
-                            </li>
-                            <li>
-                                @Html.DisplayFor(modelItem => item.Nick)
-                            </li>
-                            <li>
-                                @Html.DisplayFor(modelItem => item.Rank)
-                            </li>
-                            <li>
-                                @Html.DisplayFor(modelItem => item.ClubName)
-                            </li>
-                    <td>
-                        <a asp-page="/Infos/Edit" asp-route-id="@item.Id">Edit</a> |
-                    </td>
-                    </ol>}
-                                }
-                        </
-                        tbody >
-                        </
-                        table >
-                        </
-                        span >
-                        |
-
-
-                        ::::::::::::BESKRIVELSE::::::::::::
-
-                        <hr class="d-sm-none">
-            </div>
-
-            <div table class="col-sm-8">
-
-                <h5>Beskrivelse</h5>
-
-
-                <p>
-                    <tbody>
-                        @foreach (var item in userManager.Users)
-                        {
-            <ol style="list-style-type: none; display: inline-block;">
-                <li>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </li>
-            </ol>}
-                    </tbody>
+                    }
+                </tbody>
                 </p>
                 <br>
-            </div>
-        </div>
+                </div>
+                </div>
 
-        @*::::::::::::TræningsStatistik::::::::::::*@
+                @*::::::::::::TræningsStatistik::::::::::::*@
 
-        <html>
-        <body>
+                <html>
+                <body>
 
-            <button onclick="document.location='/scoreboard/index'">Rediger TræningStatistik</button>
+                    <button onclick="document.location='/scoreboard/index'">Rediger TræningStatistik</button>
 
-        </body>
+                </body>
 </body>
 </html>
 
 
 <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ScoreBoard[0].maps.mapsName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ScoreBoard[0].Kills)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ScoreBoard[0].Death)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ScoreBoard[0].Assist)
-                    </th>
-                    <th>
-                        KDA
-                    </th>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ScoreBoard[0].mapsName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScoreBoard[0].Kills)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScoreBoard[0].Death)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScoreBoard[0].Assist)
+            </th>
+            <th>
+                KDA
+            </th>
 
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
 
-            <div class="row">
-                <div class="col-4">
-                    <div class="list-group" id="list-tab" role="tablist">
-                        @foreach (var item in Model.Games)
-                        {
-                            <a class="list-group-item list-group-item-action" id="@Html.DisplayFor(modelItem => item.gameName)" data-toggle="list" href="#list-home" role="tab" aria-controls="@Html.DisplayFor(modelItem => item.gameName)">@Html.DisplayFor(modelItem => item.gameName)</a>
-                        }
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-8">
-                <div class="tab-content" id="nav-tabContent">
-                    @foreach (var item in Model.ScoreBoard)
+        <div class="row">
+            <div class="col-4">
+                <div class="list-group" id="list-tab" role="tablist">
+                    @foreach (var item in Model.Games)
                     {
-                        <div class="tab-pane fade" id="@Html.DisplayFor(modelItem => item.games.gameName)" role="tabpanel" aria-labelledby="@Html.DisplayFor(modelItem => item.games.gameName)">
-
-                            @if (item.TuneEsportIfv2User == userManager.GetUserId(User))
-                            {
-                                <tr>
-                                    <th>
-                                        @Html.DisplayFor(modelItem => item.maps.mapsName)
-                                    </th>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Kills)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Death)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Assist)
-                                    </td>
-                                    <td>
-                                        @{
-                                            double Calculation;
-                                        }
-                                        @(Calculation = (item.Kills / item.Death))
-                                    </td>
-
-                                </tr>
-                            }
-                        </div>
+                        <a class="list-group-item list-group-item-action" id="@Html.DisplayFor(modelItem => item.gameName)" data-toggle="list" href="#list-home" role="tab" aria-controls="@Html.DisplayFor(modelItem => item.gameName)">@Html.DisplayFor(modelItem => item.gameName)</a>
                     }
+
                 </div>
             </div>
-            
+        </div>
+        <div class="col-8">
+            <div class="tab-content" id="nav-tabContent">
+                @foreach (var item in Model.ScoreBoard)
+                {
+                    <div class="tab-pane fade" id="@Html.DisplayFor(modelItem => item.games.gameName)" role="tabpanel" aria-labelledby="@Html.DisplayFor(modelItem => item.games.gameName)">
+
+                        @if (item.TuneEsportIfv2User == userManager.GetUserId(User))
+                        {
+                            <tr>
+                                <th>
+                                    @Html.DisplayFor(modelItem => item.mapsName)
+                                </th>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Kills)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Death)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Assist)
+                                </td>
+                                <td>
+                                    @{
+                                        double Calculation;
+                                    }
+                                    @(Calculation = (item.Kills / item.Death))
+                                </td>
+
+                            </tr>
+                        }
+                    </div>
+                }
+
+            </div>
+        </div>
+</table>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ScoreBoard[0].mapsName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainingStats[0].EconomyKnowledge)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainingStats[0].Smokes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainingStats[0].Tactics)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainingStats[0].mapKnowledge)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainingStats[0].Date)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <div class="row">
+            <div class="col-4">
+                <div class="list-group" id="list-tab" role="tablist">
+                    @foreach (var item in Model.Games)
+                    {
+                        <a class="list-group-item list-group-item-action" id="@Html.DisplayFor(modelItem => item.gameName)" data-toggle="list" href="#list-home" role="tab" aria-controls="@Html.DisplayFor(modelItem => item.gameName)">@Html.DisplayFor(modelItem => item.gameName)</a>
+                    }
+
+                </div>
+            </div>
+        </div>
+        <div class="col-8">
+            <div class="tab-content" id="nav-tabContent">
+                @foreach (var item in Model.TrainingStats)
+                {
+                    <div class="tab-pane fade" id="@Html.DisplayFor(modelItem => item.games.gameName)" role="tabpanel" aria-labelledby="@Html.DisplayFor(modelItem => item.games.gameName)">
+
+                        @if (item.TuneEsportIfv2User == userManager.GetUserId(User))
+                        {
+                        <tr>
+                            <th>
+                                @Html.DisplayFor(modelItem => item.mapsName)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EconomyKnowledge)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Smokes)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Tactics)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.mapKnowledge)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+
+                        </tr>
+                        }
+                    </div>
+                }
+
+            </div>
+        </div>
+</table>            
