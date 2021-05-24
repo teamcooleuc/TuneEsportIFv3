@@ -32,12 +32,10 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
 
             public List<Game> Games{ get; set; }
 
-            public List<TrainingStats>TrainingStats { get; set; }
-            public TrainingStats TrainingStat { get; set; }
+            public IList<TrainingStats>TrainingStats { get; set; }
 
             public List<ScoreBoard> ScoreBoard { get; set; }
 
-            public List<Map> maps { get; set; }
 
             public string TuneEsportIfv2User { get; set; }
 
@@ -45,7 +43,7 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
             public IGameService GameService;
             
             public IndexModel(IInfoService service, IScoreBoardService SBService, IGameService GService, UserManager<TuneEsportIfv2User> userManager,
-                SignInManager<TuneEsportIfv2User> signInManager)
+                SignInManager<TuneEsportIfv2User> signInManager, TuneEsportIFv2.Data.ApplicationDbContext context)
             {
                 _context = context;
                 ScoreBoardService = SBService;
@@ -81,7 +79,7 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
 
                 [Required]
                 [Display(Name = "Union")]
-                public string Union { get; set; }
+                public string ClubName { get; set; }
             }
 
         private async Task LoadAsync(TuneEsportIfv2User user)
@@ -95,7 +93,7 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
                 Rank = user.Rank,
                 Team = user.Team,
                 Nick = user.Nick,
-                Union = user.Union
+                ClubName = user.ClubName
 
             };
         }
@@ -111,6 +109,7 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
 
             ScoreBoard = ScoreBoardService.GetAllScoreBoards(scoreBoard);
             Games = GameService.GetAllGames(game);
+            TrainingStats = _context.TrainingStats.ToList();
             await LoadAsync(user);
             return Page();
         }
@@ -142,9 +141,9 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
             {
                 user.Team = Input.Team;
             }
-            if (Input.Union != user.Name)
+            if (Input.ClubName != user.ClubName)
             {
-                user.Name = Input.Union;
+                user.Name = Input.ClubName;
             }
             await _userManager.UpdateAsync(user);
             await _signInManager.RefreshSignInAsync(user);

@@ -48,9 +48,9 @@
         <span asp-validation-for="Input.Team" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Input.Union"></label>
-        <input asp-for="Input.Union" class="form-control" />
-        <span asp-validation-for="Input.Union" class="text-danger"></span>
+        <label asp-for="Input.ClubName"></label>
+        <input asp-for="Input.ClubName" class="form-control" />
+        <span asp-validation-for="Input.ClubName" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Input.Nick"></label>
@@ -94,7 +94,7 @@
             Rank
         </th>
         <th>
-            Union
+            ClubName
         </th>
     </tr>
     </thead>
@@ -116,7 +116,7 @@
                     @item.Rank
                 </td>
                 <td>
-                    @item.Union
+                    @item.ClubName
                 </td>
  
  
@@ -170,8 +170,7 @@
             <button onclick="document.location='/scoreboard/index'">Rediger TræningStatistik</button>
 
         </body>
-</body>
-</html>
+        </html>
 
 
 <table class="table">
@@ -251,7 +250,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ScoreBoard[0].mapsName)
+                @Html.DisplayNameFor(model => model.TrainingStats[0].mapsName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.TrainingStats[0].EconomyKnowledge)
