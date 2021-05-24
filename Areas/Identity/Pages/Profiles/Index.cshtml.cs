@@ -72,7 +72,7 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
                 public string Nick { get; set; }
 
                 [Required]
-                [Display(Name = "Union")]
+                [Display(Name = "Clubname")]
                 public string ClubName { get; set; }
             }
 
@@ -137,7 +137,7 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
             }
             if (Input.ClubName != user.ClubName)
             {
-                user.Name = Input.ClubName;
+                user.ClubName = Input.ClubName;
             }
             await _userManager.UpdateAsync(user);
             await _signInManager.RefreshSignInAsync(user);
