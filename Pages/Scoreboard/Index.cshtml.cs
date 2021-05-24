@@ -18,12 +18,12 @@ namespace TuneEsportIFv2.Pages.Scoreboard
         {
             _context = context;
         }
-
-        public IList<ScoreBoard> ScoreBoard { get;set; }
+        public IList<TrainingStats> TrainingStats { get; set; }
+        public TrainingStats TrainingStat { get; set; }
 
         public async Task OnGetAsync()
         {
-            ScoreBoard = await _context.ScoreBoards.ToListAsync();
+            TrainingStats = await _context.TrainingStats.ToListAsync();
         }
     }
 }

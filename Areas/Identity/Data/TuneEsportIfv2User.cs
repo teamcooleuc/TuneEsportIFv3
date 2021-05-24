@@ -23,7 +23,7 @@ namespace TuneEsportIFv2.Areas.Identity.Data
 
         public string Team { get; set; }
 
-        public string Union { get; set; }
+        public string ClubName { get; set; }
 
         public string Nick { get; set; }
 

@@ -20,7 +20,6 @@ namespace TuneEsportIFv2.Pages.Scoreboard
         public ScoreBoard ScoreBoard { get; set; }
 
         public string Username { get; set; }
-
         public List<ScoreBoard> ScoreBoards { get; set; }
         public List<Map> Maps { get; set; }
 
@@ -70,10 +69,10 @@ namespace TuneEsportIFv2.Pages.Scoreboard
             ScoreBoard.TuneEsportIfv2User = user.Id;
             ScoreBoard.Date = DateTime.Today;
 
-            _context.ScoreBoards.Add(ScoreBoard);
+            await _context.ScoreBoards.AddAsync(ScoreBoard);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./data");
         }
     }
 }

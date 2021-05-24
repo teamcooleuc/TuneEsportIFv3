@@ -180,16 +180,16 @@
                         @Html.DisplayNameFor(model => model.ScoreBoard[0].maps.mapsName)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.ScoreBoard[0].mapKnowledge)
+                        @Html.DisplayNameFor(model => model.ScoreBoard[0].Kills)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.ScoreBoard[0].Smokes)
+                        @Html.DisplayNameFor(model => model.ScoreBoard[0].Death)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.ScoreBoard[0].EconomyKnowledge)
+                        @Html.DisplayNameFor(model => model.ScoreBoard[0].Assist)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.ScoreBoard[0].Tactics)
+                        KDA
                     </th>
 
                     <th></th>
@@ -221,16 +221,19 @@
                                         @Html.DisplayFor(modelItem => item.maps.mapsName)
                                     </th>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.mapKnowledge)
+                                        @Html.DisplayFor(modelItem => item.Kills)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Smokes)
+                                        @Html.DisplayFor(modelItem => item.Death)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.EconomyKnowledge)
+                                        @Html.DisplayFor(modelItem => item.Assist)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Tactics)
+                                        @{
+                                            double Calculation;
+                                        }
+                                        @(Calculation = (item.Kills / item.Death))
                                     </td>
 
                                 </tr>
