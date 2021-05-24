@@ -97,11 +97,41 @@
             ClubName
         </th>
     </tr>
-    </thead>
+    <div class="col-8">
+        <div class="tab-content" id="nav-tabContent">
+            @foreach (var item in userManager.Users)
+            {
+                @if (item.Id == userManager.GetUserId(User))
+                    {
+                        <tr>
+                            <th>
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </th>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Team)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nick)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Rank)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ClubName)
+                            </td>
+
+                        </tr>
+                    }
+            }
+
+        </div>
+    </div>
+</table>
+ 
+
     <tbody>
     </tbody>
- 
-</table>
+
 
                         @*::::::::::::BESKRIVELSE::::::::::::*@
 
