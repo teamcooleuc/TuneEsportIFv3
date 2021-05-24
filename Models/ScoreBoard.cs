@@ -15,15 +15,6 @@ namespace TuneEsportIFv2.Models
         [Key]
         public int ScoreId { get; set; }
 
-        public string Records { get; set; }
-
-        public string mapKnowledge { get; set; }
-
-        public int Smokes { get; set; }
-
-        public string Tactics { get; set; }
-
-        public string EconomyKnowledge { get; set; }
         public int Kills { get; set; }
 
         public int Death { get; set; }

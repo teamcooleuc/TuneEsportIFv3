@@ -27,36 +27,36 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
-                <label asp-for="ScoreBoard.mapsName" class="form-control"></label>
-                <select asp-for="ScoreBoard.mapsName">
+                <label asp-for="TrainingStat.mapsName" class="form-control"></label>
+                <select asp-for="TrainingStat.mapsName">
                     @foreach (var item in Model.Maps)
                     {
                         <option value="@item.mapsName">@item.mapsName </option>
                     }
                 </select>
-                <span asp-validation-for="ScoreBoard.mapsName" class="text-danger"></span>
+                <span asp-validation-for="TrainingStat.mapsName" class="text-danger"></span>
             </div>
 
 
             <div class="form-group">
-                <label asp-for="ScoreBoard.EconomyKnowledge" class="control-label"></label>
-                <input asp-for="ScoreBoard.EconomyKnowledge" class="form-control" />
-                <span asp-validation-for="ScoreBoard.EconomyKnowledge" class="text-danger"></span>
+                <label asp-for="TrainingStat.EconomyKnowledge" class="control-label"></label>
+                <input asp-for="TrainingStat.EconomyKnowledge" class="form-control" />
+                <span asp-validation-for="TrainingStat.EconomyKnowledge" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ScoreBoard.Smokes" class="control-label"></label>
-                <input asp-for="ScoreBoard.Smokes" class="form-control" />
-                <span asp-validation-for="ScoreBoard.Smokes" class="text-danger"></span>
+                <label asp-for="TrainingStat.Smokes" class="control-label"></label>
+                <input asp-for="TrainingStat.Smokes" class="form-control" />
+                <span asp-validation-for="TrainingStat.Smokes" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ScoreBoard.Tactics" class="control-label"></label>
-                <input asp-for="ScoreBoard.Tactics" class="form-control" />
-                <span asp-validation-for="ScoreBoard.Tactics" class="text-danger"></span>
+                <label asp-for="TrainingStat.Tactics" class="control-label"></label>
+                <input asp-for="TrainingStat.Tactics" class="form-control" />
+                <span asp-validation-for="TrainingStat.Tactics" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ScoreBoard.mapKnowledge" class="control-label"></label>
-                <input asp-for="ScoreBoard.mapKnowledge" class="form-control" />
-                <span asp-validation-for="ScoreBoard.mapKnowledge" class="text-danger"></span>
+                <label asp-for="TrainingStat.mapKnowledge" class="control-label"></label>
+                <input asp-for="TrainingStat.mapKnowledge" class="form-control" />
+                <span asp-validation-for="TrainingStat.mapKnowledge" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

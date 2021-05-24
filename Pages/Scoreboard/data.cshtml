@@ -12,7 +12,7 @@
 @{ ViewData["Title"] = "Create";
     Layout = "~/Pages/Shared/_Layout.cshtml"; }
 
-<h4>Insert data</h4>
+<h4>Insert data for @User.Identity.Name</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -100,22 +100,19 @@
                     @Html.DisplayFor(modelItem => item.Assist)
                 </td>
                 <td>
+                    
+
 
                     @{
                         double Calculation;
                     }
-                        @(Calculation = (item.Kills / item.Death))
+                    @(Calculation = (item.Kills / item.Death))
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.mapsName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Date.Date)
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.ScoreId">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.ScoreId">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.ScoreId">Delete</a>
                 </td>
             </tr>
         }

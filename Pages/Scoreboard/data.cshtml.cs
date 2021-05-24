@@ -72,7 +72,7 @@ namespace TuneEsportIFv2.Pages.Scoreboard
             await _context.ScoreBoards.AddAsync(ScoreBoard);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./data");
         }
     }
 }

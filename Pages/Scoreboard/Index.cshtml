@@ -15,21 +15,46 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ScoreBoard[0].maps.mapsName)
+                @Html.DisplayNameFor(model => model.TrainingStat.mapsName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainingStat.EconomyKnowledge)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainingStat.Smokes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainingStat.Tactics)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainingStat.mapKnowledge)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainingStat.Date)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.ScoreBoard) {
+@foreach (var item in Model.TrainingStats) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.maps.mapsName)
+                @Html.DisplayFor(modelItem => item.mapsName)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ScoreId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ScoreId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ScoreId">Delete</a>
+                @Html.DisplayFor(modelItem => item.EconomyKnowledge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Smokes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tactics)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mapKnowledge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
             </td>
         </tr>
 }
