@@ -1,6 +1,10 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using TuneEsportIFv2.Areas.Identity.Data;
 using TuneEsportIFv2.Models;
 
@@ -9,15 +13,72 @@ namespace TuneEsportIFv2.Pages.Members
 {
     public class MembersModel : PageModel
     {
-        public List<Info> Info { get; set; }
+        private readonly TuneEsportIFv2.Data.ApplicationDbContext _context;
+        private readonly UserManager<TuneEsportIfv2User> _userManager;
+
+        [BindProperty]
         public List<Game> Games { get; set; }
 
-        public List<ScoreBoard> ScoreBoard { get; set; }
+        public Role Role { get; set; }
 
-        public List<Map> maps { get; set; }
+        public List<ScoreBoard> ScoreBoards { get; set; }
+        public List<Role> RoleList { get; set; }
 
-        public IActionResult OnGet(Info info, ScoreBoard scoreBoard, TuneEsportIfv2User tuneEsportIfv2User, Game game)
+        public MembersModel(TuneEsportIFv2.Data.ApplicationDbContext context, UserManager<TuneEsportIfv2User> userManager)
         {
+            _context = context;
+            _userManager = userManager;
+        }
+
+        public async Task <IActionResult> OnGetAsync(Info info, ScoreBoard scoreBoard, TuneEsportIfv2User tuneEsportIfv2User, Role role)
+        {
+            Games = await _context.Games.ToListAsync();
+            ScoreBoards = await _context.ScoreBoards.ToListAsync();
+            RoleList = await _context.Roller.ToListAsync();
+            
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostDeleteUserAsync(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                var result = await _userManager.DeleteAsync(user);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("ListUsers");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+
+                return Page();
+            }
+        }
+
+        public async Task<IActionResult> OnPostAsync(int id)
+        {
+            var user1 = await _context.Roller.FindAsync(id);
+
+            if (!ModelState.IsValid)
+            {
+                //await LoadAsync(user);
+                return Page();
+            }
+
+            //await _context.Roller.AddAsync(Role);
+            _context.Attach(user1).State = EntityState.Modified;
+
+            await _context.SaveChangesAsync();
 
             return Page();
         }

@@ -77,6 +77,8 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Account
             [Required]
             [Display(Name = "Game name")]
             public string GameName { get; set; }
+
+            public string Roller { get; set; }
         }
 
         

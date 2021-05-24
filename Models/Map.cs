@@ -17,7 +17,7 @@ namespace TuneEsportIFv2.Models
         public int mapsId { get; set; }
         public string mapsName { get; set; }
         public string gameName { get; set; }
-        public Game games { get; set; }
+        public Game Games { get; set; }
 
 
         public virtual ICollection<ScoreBoard> ScoreBoards { get; set; }

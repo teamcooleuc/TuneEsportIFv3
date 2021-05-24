@@ -21,9 +21,10 @@ namespace TuneEsportIFv2.Pages.Scoreboard
 
         [BindProperty]
         public ScoreBoard ScoreBoard { get; set; }
-       
-        public string Username { get; set; }
 
+        public List<ScoreBoard> ScoreBoards { get; set; }
+        public string Username { get; set; }
+        public List<Map> Maps { get; set; }
 
         public CreateModel(TuneEsportIFv2.Data.ApplicationDbContext context, UserManager<TuneEsportIfv2User> userManager)
         {
@@ -31,13 +32,10 @@ namespace TuneEsportIFv2.Pages.Scoreboard
             _userManager = userManager;
         }
 
-        public List<Map> maps { get; set; }
-        public List<TuneEsportIfv2User> User1 { get; set; }
-
         public async Task<IActionResult> OnGetAsync()
         {
-            maps = await _context.Maps.ToListAsync();
-            User1 = await _context.TuneEsportIfv2Users.ToListAsync();
+            Maps = await _context.Maps.ToListAsync();
+            ScoreBoards = await _context.ScoreBoards.ToListAsync();
 
             return Page();
         }
@@ -71,8 +69,9 @@ namespace TuneEsportIFv2.Pages.Scoreboard
             }
 
             ScoreBoard.TuneEsportIfv2User = user.Id;
+            ScoreBoard.Date = DateTime.Today;
 
-            _context.ScoreBoards.Add(ScoreBoard);
+            await _context.ScoreBoards.AddAsync(ScoreBoard);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
