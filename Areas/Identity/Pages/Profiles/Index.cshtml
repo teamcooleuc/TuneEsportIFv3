@@ -3,6 +3,7 @@
 @inject UserManager<TuneEsportIfv2User> userManager
 @using TuneEsportIFv2.Areas.Identity.Data
 @using System.Security.Cryptography.X509Certificates
+@using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal
 @using Microsoft.CodeAnalysis.Differencing
 @model TuneEsportIFv2.Areas.Identity.Pages.Profiles.IndexModel
 @{
@@ -82,19 +83,20 @@
     <thead>
     <tr>
         <th>
-            UserName
+            @Html.DisplayNameFor(modelItem => Model.Username)
+
         </th>
         <th>
-            Team
+            @Html.DisplayNameFor(modelItem => Model.Input.Team)
         </th>
         <th>
-            Nick
+            @Html.DisplayNameFor(modelItem => Model.Input.Nick)
         </th>
         <th>
-            Rank
+            @Html.DisplayNameFor(modelItem => Model.Input.Rank)
         </th>
         <th>
-            ClubName
+            @Html.DisplayNameFor(modelItem => Model.Input.ClubName)
         </th>
     </tr>
     <div class="col-8">

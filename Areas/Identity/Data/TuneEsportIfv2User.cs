@@ -12,7 +12,7 @@ namespace TuneEsportIFv2.Areas.Identity.Data
 {
     public class TuneEsportIfv2User : IdentityUser
     {
-        [PersonalData]
+        //[PersonalData]
         public string Name { get; set; }
 
         public byte[] ProfilePicture { get; set; }
