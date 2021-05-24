@@ -30,7 +30,7 @@ namespace TuneEsportIFv2.Pages.Members
             _userManager = userManager;
         }
 
-        public async Task <IActionResult> OnGetAsync(Info info, ScoreBoard scoreBoard, TuneEsportIfv2User tuneEsportIfv2User, Role role)
+        public async Task <IActionResult> OnGetAsync(ScoreBoard scoreBoard, TuneEsportIfv2User tuneEsportIfv2User, Role role)
         {
             Games = await _context.Games.ToListAsync();
             ScoreBoards = await _context.ScoreBoards.ToListAsync();

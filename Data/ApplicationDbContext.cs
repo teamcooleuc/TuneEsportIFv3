@@ -16,8 +16,6 @@ namespace TuneEsportIFv2.Data
             : base(options)
         { }
 
-        public virtual DbSet<Info> Infos { get; set; }
-
         public virtual DbSet<Game> Games { get; set; }
 
         public virtual DbSet<Map> Maps { get; set; }

@@ -16,7 +16,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using TuneEsportIFv2.Areas.Identity.Data;
 using TuneEsportIFv2.Models;
-using TuneEsportIFv2.Services.Services;
 
 namespace TuneEsportIFv2.Areas.Identity.Pages.Account
 {

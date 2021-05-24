@@ -14,13 +14,16 @@ namespace TuneEsportIFv2.Models
     {
 
         [Key]
+        [Display(Name = "Map Id")]
         public int mapsId { get; set; }
+        [Display(Name = "Map name")]
+        [Required]
         public string mapsName { get; set; }
+        
+        [Display(Name = "Game Name")]
         public string gameName { get; set; }
         public Game Games { get; set; }
-
-
-        public virtual ICollection<ScoreBoard> ScoreBoards { get; set; }
+        //public virtual ICollection<ScoreBoard> ScoreBoards { get; set; }
 
        
     }

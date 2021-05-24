@@ -12,11 +12,10 @@ using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using TuneEsportIFv2.Areas.Identity.Data;
 using TuneEsportIFv2.Models;
-using TuneEsportIFv2.Services.Interfaces;
-using TuneEsportIFv2.Services.Services;
 
 namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
 {
@@ -39,15 +38,10 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
 
             public string TuneEsportIfv2User { get; set; }
 
-            public IScoreBoardService ScoreBoardService;
-            public IGameService GameService;
-            
-            public IndexModel(IInfoService service, IScoreBoardService SBService, IGameService GService, UserManager<TuneEsportIfv2User> userManager,
+            public IndexModel( UserManager<TuneEsportIfv2User> userManager,
                 SignInManager<TuneEsportIfv2User> signInManager, TuneEsportIFv2.Data.ApplicationDbContext context)
             {
                 _context = context;
-                ScoreBoardService = SBService;
-                GameService = GService;
                 _userManager = userManager;
                 _signInManager = signInManager;
             }
@@ -99,18 +93,18 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
         }
 
 
-        public async Task<IActionResult> OnGetAsync(Info info, ScoreBoard scoreBoard, Game game)
+        public async Task<IActionResult> OnGetAsync(ScoreBoard scoreBoard, Game game)
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
-
-            ScoreBoard = ScoreBoardService.GetAllScoreBoards(scoreBoard);
-            Games = GameService.GetAllGames(game);
+            //Games = GameService.GetAllGames(game);
             TrainingStats = _context.TrainingStats.ToList();
             await LoadAsync(user);
+            Games = await _context.Games.ToListAsync();
+            ScoreBoard = await _context.ScoreBoards.ToListAsync();
             return Page();
         }
 

@@ -13,22 +13,21 @@ namespace TuneEsportIFv2.Models
     public class ScoreBoard
     {
         [Key]
+        [Display(Name = "Score Id")]
         public int ScoreId { get; set; }
-
+        [Display(Name = "Kills")]
         public int Kills { get; set; }
-
+        [Display(Name = "Death")]
         public int Death { get; set; }
-
+        [Display(Name = "Assist")]
         public int Assist { get; set; }
-
+        [Display(Name = "Maps name")]
         public string mapsName { get; set; }
-
+        [Display(Name = "Date")]
         public DateTime Date { get; set; }
 
-        public Map maps { get; set; }
-
         public Game games { get; set; }
-
+        [Display(Name = "User")]
         public string TuneEsportIfv2User  { get; set; }
     }
 }

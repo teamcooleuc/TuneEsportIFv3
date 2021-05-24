@@ -10,7 +10,6 @@ using Microsoft.EntityFrameworkCore;
 using TuneEsportIFv2.Areas.Identity.Data;
 using TuneEsportIFv2.Data;
 using TuneEsportIFv2.Models;
-using TuneEsportIFv2.Services.Interfaces;
 
 namespace TuneEsportIFv2.Pages.Scoreboard
 {

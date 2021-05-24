@@ -12,7 +12,10 @@ namespace TuneEsportIFv2.Models
     public class Game
     {
         [Key]
+        [Display(Name = "Game Id")]
         public int gameID { get; set; }
+        [Required]
+        [Display(Name = "Game name")]
         public string gameName { get; set; }
         public virtual ICollection<Map> maps { get; set; }
         public virtual ICollection<ScoreBoard> scoreBoards { get; set; }
