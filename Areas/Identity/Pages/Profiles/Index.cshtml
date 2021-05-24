@@ -3,6 +3,7 @@
 @inject UserManager<TuneEsportIfv2User> userManager
 @using TuneEsportIFv2.Areas.Identity.Data
 @using System.Security.Cryptography.X509Certificates
+@using Microsoft.CodeAnalysis.Differencing
 @model TuneEsportIFv2.Areas.Identity.Pages.Profiles.IndexModel
 @{
 }
@@ -25,9 +26,45 @@
         }
     </style>
 </head>
-<body>
 
-    @*::::::::::::ProfilBillede::::::::::::*@
+
+<form id="profile-form" method="post" enctype="multipart/form-data">
+<div class="row">
+<div class="col-md-6">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Username"></label>
+        <input asp-for="Username" class="form-control" disabled="disabled"/>
+        <span asp-validation-for="Username" class="text-danger" ></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Input.Rank"></label>
+        <input asp-for="Input.Rank" class="form-control" />
+        <span asp-validation-for="Input.Rank" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Input.Team"></label>
+        <input asp-for="Input.Team" class="form-control" />
+        <span asp-validation-for="Input.Team" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Input.Union"></label>
+        <input asp-for="Input.Union" class="form-control" />
+        <span asp-validation-for="Input.Union" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Input.Nick"></label>
+        <input asp-for="Input.Nick" class="form-control" />
+        <span asp-validation-for="Input.Nick" class="text-danger"></span>
+    </div>
+    <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>
+</div>
+</div>
+</form>
+
+
+
+@*::::::::::::ProfilBillede::::::::::::*@
     @*<div class="container" style="margin-top:30px">
         <div class="row">
             <div> </div>
@@ -40,95 +77,100 @@
             </div>*@
             @*::::::::::::INFO VIEW og Rediger::::::::::::*@
 
-            <span>
+            
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            Navn
+        </th>
+        <th>
+            Team
+        </th>
+        <th>
+            Nick
+        </th>
+        <th>
+            Rank
+        </th>
+        <th>
+            Union
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in userManager.Users)
+    {
+        {
+            <tr>
+                <td>
+                    @item.UserName
+                </td>
+                <td>
+                    @item.Team
+                </td>
+                <td>
+                    @item.Nick
+                </td>
+                <td>
+                    @item.Rank
+                </td>
+                <td>
+                    @item.Union
+                </td>
+ 
+ 
+            </tr>
+        }
+    }
+    </tbody>
+ 
+</table>
+    
 
-                @*<table class="table">
-                    <thead>
-                        <ol style="list-style-type: none; display: inline-block;">
-                            <li>
-                                @Html.DisplayNameFor(Model => Model.[0].Team)
-                            </li>
-                            <li>
-                                @Html.DisplayNameFor(Model => Model.UserInfo[0].Nick)
-                            </li>
-                            <li>
-                                @Html.DisplayNameFor(Model => Model.UserInfo[0].Rank)
-                            </li>
-                            <li>
-                                @Html.DisplayNameFor(Model => Model.UserInfo[0].Union)
-                            </li>
-                        </ol>
-                    <th></th>
-
-                    </thead>*@
-
-                <table class="table">
-                    <tbody>
-                        @foreach (var item in userManager.Users)
-                        {@*@if (item.TuneEsportIfv2User == userManager.GetUserId(User))*@ {
-
-                        <ol style="list-style-type: none; display: inline-block;">
-                            <li>
-                                @Html.DisplayFor(modelItem => item.Team)
-                            </li>
-                            <li>
-                                @Html.DisplayFor(modelItem => item.Nick)
-                            </li>
-                            <li>
-                                @Html.DisplayFor(modelItem => item.Rank)
-                            </li>
-                            <li>
-                                @Html.DisplayFor(modelItem => item.Union)
-                            </li>
-                    <td>
-                        <a asp-page="/Infos/Edit" asp-route-id="@item.Id">Edit</a> |
-                    </td>
-                    </ol>}
-                                }
-                        </
-                        tbody >
-                        </
-                        table >
-                        </
-                        span >
-                        |
+                       
 
 
-                        ::::::::::::BESKRIVELSE::::::::::::
 
-                        <hr class="d-sm-none">
-            </div>
+    
 
-            <div table class="col-sm-8">
+
+
+                   
+         
+
+    <div table class="col-sm-8">
 
                 <h5>Beskrivelse</h5>
 
 
-                <p>
-                    <tbody>
-                        @foreach (var item in userManager.Users)
-                        {
-            <ol style="list-style-type: none; display: inline-block;">
-                <li>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </li>
-            </ol>}
-                    </tbody>
-                </p>
-                <br>
-            </div>
-        </div>
+        <p>
+            <tbody>
+
+            @foreach (var item in userManager.Users)
+            {
+                <ol style="list-style-type: none; display: inline-block;">
+                    <li>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </li>
+                </ol>
+
+            }
+            </tbody>
+        </p>
+    </div>
+        
 
         @*::::::::::::TræningsStatistik::::::::::::*@
 
         <html>
-        <body>
+            <body>
 
-            <button onclick="document.location='/scoreboard/index'">Rediger TræningStatistik</button>
+                <button onclick="document.location='/scoreboard/index'">Rediger TræningStatistik</button>
 
-        </body>
-</body>
-</html>
+            </body>
+    
+        </html>
 
 
 <table class="table">
