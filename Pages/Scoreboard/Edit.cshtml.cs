@@ -22,9 +22,9 @@ namespace TuneEsportIFv2.Pages.Scoreboard
 
         [BindProperty]
         public ScoreBoard ScoreBoard { get; set; }
-        public TrainingStat TrainingStat { get; set; }
+        public TrainingStats TrainingStat { get; set; }
 
-        public List<TrainingStat> TrainingStats { get; set; }
+        public List<TrainingStats> TrainingStats { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
