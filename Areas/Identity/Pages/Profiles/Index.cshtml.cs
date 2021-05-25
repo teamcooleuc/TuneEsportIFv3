@@ -101,14 +101,13 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
-            //Games = GameService.GetAllGames(game);
+            
             TrainingStats = _context.TrainingStats.ToList();
             await LoadAsync(user);
             Games = await _context.Games.ToListAsync();
             ScoreBoard = await _context.ScoreBoards.ToListAsync();
 
-            //
-            NEWNEW = await _context.TuneEsportIfv2Users.ToListAsync();
+            
             return Page();
         }
 

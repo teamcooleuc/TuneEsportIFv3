@@ -311,14 +311,14 @@ namespace TuneEsportIFv2.Migrations
                     b.Property<int>("Assist")
                         .HasColumnType("int");
 
-                    b.Property<string>("Bob")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Death")
                         .HasColumnType("int");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Kills")
                         .HasColumnType("int");

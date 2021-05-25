@@ -70,7 +70,7 @@ namespace TuneEsportIFv2.Pages.Scoreboard
             }
 
             ScoreBoard.TuneEsportIfv2User = user.Id;
-            ScoreBoard.Bob = user.Name;
+            ScoreBoard.FullName = user.Name;
             ScoreBoard.Date = DateTime.Today;
 
             await _context.ScoreBoards.AddAsync(ScoreBoard);

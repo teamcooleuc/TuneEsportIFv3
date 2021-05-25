@@ -10,7 +10,7 @@ using TuneEsportIFv2.Data;
 namespace TuneEsportIFv2.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210525135244_1")]
+    [Migration("20210525142144_1")]
     partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -313,14 +313,14 @@ namespace TuneEsportIFv2.Migrations
                     b.Property<int>("Assist")
                         .HasColumnType("int");
 
-                    b.Property<string>("Bob")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Death")
                         .HasColumnType("int");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Kills")
                         .HasColumnType("int");

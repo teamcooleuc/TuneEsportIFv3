@@ -221,7 +221,7 @@ namespace TuneEsportIFv2.Migrations
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     gamesgameID = table.Column<int>(type: "int", nullable: true),
                     TuneEsportIfv2User = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Bob = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TuneEsportIfv2UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>

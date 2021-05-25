@@ -14,7 +14,8 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.NEWNEW[0].Nick)
+                @Html.DisplayNameFor(model => model.ScoreBoard[0].FullName)
+
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ScoreBoard[0].Kills)
@@ -26,10 +27,8 @@
                 @Html.DisplayNameFor(model => model.ScoreBoard[0].Assist)
             </th>
             <th>
-                KDA
+                K/D
             </th>
-
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -37,16 +36,15 @@
 
         <div class="col-8">
             <div class="tab-content" id="nav-tabContent">
-                @foreach (var item2 in Model.NEWNEW)
-                {
-                    <th>
-                        @Html.DisplayFor(modelItem => item2.Nick)
-                    </th>
+    
 
-                    foreach (var item in Model.ScoreBoard)
+                    @foreach (var item in Model.ScoreBoard)
                     {
 
                     <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Kills)
                         </td>
@@ -65,7 +63,7 @@
 
                     </tr>
                     }
-                }
+                
             </div>
         </div>
 </table>
