@@ -13,6 +13,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TuneEsportIFv2.Areas.Identity.Data;
+using TuneEsportIFv2.Services.EFServices;
+using TuneEsportIFv2.Services.Interface;
 
 namespace TuneEsportIFv2
 {
@@ -35,8 +37,9 @@ namespace TuneEsportIFv2
             //services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
+            services.AddTransient<ITrainingStatService, EFTrainingStatService>();
 
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

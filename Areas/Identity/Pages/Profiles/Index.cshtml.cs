@@ -31,7 +31,7 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
 
             public List<Game> Games{ get; set; }
 
-            public IList<TrainingStats>TrainingStats { get; set; }
+            public IList<TrainingStat>TrainingStats { get; set; }
 
             public List<ScoreBoard> ScoreBoard { get; set; }
 

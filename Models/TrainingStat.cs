@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace TuneEsportIFv2.Models
 {
     [Table("TrainingStats")]
-    public class TrainingStats
+    public class TrainingStat
     {
         [Key]
         [Display(Name = "Trainings stats Id")]
