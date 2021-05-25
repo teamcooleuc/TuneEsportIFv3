@@ -16,30 +16,30 @@ namespace TuneEsportIFv2.Services.EFServices
         {
             context = service;
         }
-        public IEnumerable<TrainingStat> GetAllTrainingStats()
+        public IEnumerable<TrainingStats> GetAllTrainingStats()
         {
             return context.TrainingStats.ToList();
         }
 
-        public TrainingStat GetTrainingStat(int id)
+        public TrainingStats GetTrainingStat(int id)
         {
             var trainingStat = context.TrainingStats.FirstOrDefault(t => t.TrainingStatId == id);
             return trainingStat;
         }
 
-        public void DeleteTrainingStat(TrainingStat trainingStat)
+        public void DeleteTrainingStat(TrainingStats trainingStat)
         {
             context.TrainingStats.Remove(trainingStat);
             context.SaveChanges();
         }
 
-        public void AddTrainingStat(TrainingStat trainingStat)
+        public void AddTrainingStat(TrainingStats trainingStat)
         {
             context.Add(trainingStat);
             context.SaveChanges();
         }
 
-        public void EditTrainingStat(TrainingStat trainingStat)
+        public void EditTrainingStat(TrainingStats trainingStat)
         {
             context.TrainingStats.Update(trainingStat);
             context.SaveChanges();

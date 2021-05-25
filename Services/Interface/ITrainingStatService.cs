@@ -8,14 +8,14 @@ namespace TuneEsportIFv2.Services.Interface
 {
     interface ITrainingStatService
     {
-        IEnumerable<TrainingStat> GetAllTrainingStats();
-        TrainingStat GetTrainingStat(int id);
+        IEnumerable<TrainingStats> GetAllTrainingStats();
+        TrainingStats GetTrainingStat(int id);
 
-        void DeleteTrainingStat(TrainingStat trainingStats);
+        void DeleteTrainingStat(TrainingStats trainingStats);
 
-        void AddTrainingStat(TrainingStat trainingStats);
+        void AddTrainingStat(TrainingStats trainingStats);
 
-        void EditTrainingStat(TrainingStat trainingStats);
+        void EditTrainingStat(TrainingStats trainingStats);
 
 
     }
