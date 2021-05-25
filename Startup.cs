@@ -39,6 +39,11 @@ namespace TuneEsportIFv2
             services.AddRazorPages();
             services.AddTransient<ITrainingStatService, EFTrainingStatService>();
 
+            services.AddMvc().AddRazorPagesOptions(options =>
+            {
+                options.Conventions.AddPageRoute("/Profiles/Index", "");
+            });
+
 
         }
 

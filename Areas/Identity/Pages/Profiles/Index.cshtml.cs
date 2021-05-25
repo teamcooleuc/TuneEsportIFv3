@@ -36,6 +36,7 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
             public List<ScoreBoard> ScoreBoard { get; set; }
 
 
+
             public string TuneEsportIfv2User { get; set; }
 
             public IndexModel( UserManager<TuneEsportIfv2User> userManager,
