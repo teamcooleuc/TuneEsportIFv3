@@ -29,81 +29,59 @@
 </head>
 
 
-<form id="profile-form" method="post" enctype="multipart/form-data">
-<div class="row">
-<div class="col-md-6">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="form-group">
-        <label asp-for="Username"></label>
-        <input asp-for="Username" class="form-control" disabled="disabled"/>
-        <span asp-validation-for="Username" class="text-danger" ></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Input.Rank"></label>
-        <input asp-for="Input.Rank" class="form-control" />
-        <span asp-validation-for="Input.Rank" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Input.Team"></label>
-        <input asp-for="Input.Team" class="form-control" />
-        <span asp-validation-for="Input.Team" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Input.ClubName"></label>
-        <input asp-for="Input.ClubName" class="form-control" />
-        <span asp-validation-for="Input.ClubName" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Input.Nick"></label>
-        <input asp-for="Input.Nick" class="form-control" />
-        <span asp-validation-for="Input.Nick" class="text-danger"></span>
-    </div>
-    <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>
-</div>
-</div>
-</form>
-
-
 
 @*::::::::::::ProfilBillede::::::::::::*@
-    @*<div class="container" style="margin-top:30px">
-        <div class="row">
-            <div> </div>
-            <div class="col-sm-4">
-                <h2>About Me</h2>
-                <h5>Photo of me:</h5>
-                <div> <img class="img.fluid" style="width: 100%; height:auto;" src="/Pictures/Shortversion.jpg"></div>
-                <h3>INFO</h3>
-                <p>Lorem ipsum dolor sit ame.</p>
-            </div>*@
-    @*::::::::::::INFO VIEW og Rediger::::::::::::*@
 
-            
+
+<div class="container" style="margin-top:30px">
+    <div class="row">
+        <div> </div>
+        <div class="col-sm-4">
+            <div> <img class="img.fluid" style="width: 100%; height:auto;" src="/Pictures/Tuneifesport.jpg"></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@*::::::::::::INFO VIEW og Rediger::::::::::::*@
+
+<html>
+<body>
+
+<button onclick="document.location='/Medlemsinfo/EditProfile'">Rediger Medlemsinfo</button>
+
+</body>
+</html>
+
+
 <table class="table">
     <thead>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(modelItem => Model.Username)
+        <tr>
+            <th>
+                @Html.DisplayNameFor(modelItem => Model.Username)
 
-        </th>
-        <th>
-            @Html.DisplayNameFor(modelItem => Model.Input.Team)
-        </th>
-        <th>
-            @Html.DisplayNameFor(modelItem => Model.Input.Nick)
-        </th>
-        <th>
-            @Html.DisplayNameFor(modelItem => Model.Input.Rank)
-        </th>
-        <th>
-            @Html.DisplayNameFor(modelItem => Model.Input.ClubName)
-        </th>
-    </tr>
-    <div class="col-8">
-        <div class="tab-content" id="nav-tabContent">
-            @foreach (var item in userManager.Users)
-            {
-                @if (item.Id == userManager.GetUserId(User))
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => Model.Input.Team)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => Model.Input.Nick)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => Model.Input.Rank)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => Model.Input.ClubName)
+            </th>
+        </tr>
+        <div class="col-8">
+            <div class="tab-content" id="nav-tabContent">
+                @foreach (var item in userManager.Users)
+                {
+                    @if (item.Id == userManager.GetUserId(User))
                     {
                         <tr>
                             <th>
@@ -124,47 +102,42 @@
 
                         </tr>
                     }
-            }
+                }
 
-        </div>
-    </div>
-</table>
- 
-
-    <tbody>
-    </tbody>
-
-
-                        @*::::::::::::BESKRIVELSE::::::::::::*@
-
-<hr class="d-sm-none">
-<div table class="col-sm-8">
-    <h5>Beskrivelse</h5>
-
-
-                <p>
-                    <tbody>
-                        @foreach (var item in userManager.Users)
-                        {
-            <ol style="list-style-type: none; display: inline-block;">
-                <li>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </li>
-            </ol>}
-                    </tbody>
-                </p>
-                <br>
             </div>
-      
-        @*::::::::::::TræningsStatistik::::::::::::*@
+        </div>
+</table>
 
-        <html>
-        <body>
 
-            <button onclick="document.location='/scoreboard/index'">Rediger TræningStatistik</button>
+<tbody>
+</tbody>
 
-        </body>
-        </html>
+
+<div>
+    <p>
+        <tbody>
+            @foreach (var item in userManager.Users)
+            {
+                <ol style="list-style-type: none; display: inline-block;">
+                    <li>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </li>
+                </ol>
+}
+        </tbody>
+    </p>
+    <br>
+</div>
+
+@*::::::::::::KDA::::::::::::*@
+
+<html>
+<body>
+
+    <button onclick="document.location='/scoreboard/data'">Rediger KDA</button>
+
+</body>
+</html>
 
 
 <table class="table">
@@ -190,8 +163,10 @@
         </tr>
     </thead>
     <tbody>
+    
+    
 
-        <div class="row">
+    <div class="row">
             <div class="col-4">
                 <div class="list-group" id="list-tab" role="tablist">
                     @foreach (var item in Model.Games)
@@ -238,6 +213,14 @@
             </div>
         </div>
 </table>
+
+<html>
+<body>
+
+<button onclick="document.location='/scoreboard/index'">Rediger TræningsStatistik</button>
+
+</body>
+</html>
 
 
 <table class="table">
@@ -286,31 +269,38 @@
 
                         @if (item.TuneEsportIfv2User == userManager.GetUserId(User))
                         {
-                        <tr>
-                            <th>
-                                @Html.DisplayFor(modelItem => item.mapsName)
-                            </th>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.EconomyKnowledge)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Smokes)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Tactics)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.mapKnowledge)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Date)
-                            </td>
+                            <tr>
+                                <th>
+                                    @Html.DisplayFor(modelItem => item.mapsName)
+                                </th>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EconomyKnowledge)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Smokes)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Tactics)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.mapKnowledge)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Date)
+                                </td>
 
-                        </tr>
+                            </tr>
                         }
                     </div>
                 }
+                
+                
+
 
             </div>
         </div>
-</table>            
+</table>
+
+
+
+

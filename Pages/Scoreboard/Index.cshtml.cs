@@ -18,8 +18,8 @@ namespace TuneEsportIFv2.Pages.Scoreboard
         {
             _context = context;
         }
-        public IList<TrainingStats> TrainingStats { get; set; }
-        public TrainingStats TrainingStat { get; set; }
+        public IList<TrainingStat> TrainingStats { get; set; }
+        public TrainingStat TrainingStat { get; set; }
 
         public async Task OnGetAsync()
         {

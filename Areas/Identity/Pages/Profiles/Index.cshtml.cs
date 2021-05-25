@@ -31,7 +31,7 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
 
             public List<Game> Games{ get; set; }
 
-            public IList<TrainingStats>TrainingStats { get; set; }
+            public IList<TrainingStat>TrainingStats { get; set; }
 
             public List<ScoreBoard> ScoreBoard { get; set; }
 
@@ -143,8 +143,13 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
             await _userManager.UpdateAsync(user);
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
-            return RedirectToPage("./Index");
-            }
+            //return RedirectToPage("/Profiles/Index");
+
+            //return RedirectToPage("/Account/Profiles", new { area = "Identity" });
+
+            //return RedirectToPage("~/Areas/Identity/Pages/Profiles/Index.cshtml");
+
         }
+    }
     }
 
