@@ -29,9 +29,9 @@ namespace TuneEsportIFv2.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProfilePicture = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Rank = table.Column<int>(type: "int", nullable: false),
+                    Rank = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Team = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Union = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClubName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Nick = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GameName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -60,29 +60,11 @@ namespace TuneEsportIFv2.Migrations
                 {
                     gameID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    gameName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    gameName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Games", x => x.gameID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Info",
-                columns: table => new
-                {
-                    infoId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    profilPicture = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    rank = table.Column<int>(type: "int", nullable: false),
-                    team = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    union = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    nick = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Info", x => x.infoId);
                 });
 
             migrationBuilder.CreateTable(
@@ -211,7 +193,7 @@ namespace TuneEsportIFv2.Migrations
                 {
                     mapsId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    mapsName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    mapsName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     gameName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GamesgameID = table.Column<int>(type: "int", nullable: true)
                 },
@@ -237,9 +219,9 @@ namespace TuneEsportIFv2.Migrations
                     Assist = table.Column<int>(type: "int", nullable: false),
                     mapsName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    mapsId = table.Column<int>(type: "int", nullable: true),
                     gamesgameID = table.Column<int>(type: "int", nullable: true),
                     TuneEsportIfv2User = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Bob = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TuneEsportIfv2UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
@@ -257,12 +239,6 @@ namespace TuneEsportIFv2.Migrations
                         principalTable: "Games",
                         principalColumn: "gameID",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_ScoreBoard_Maps_mapsId",
-                        column: x => x.mapsId,
-                        principalTable: "Maps",
-                        principalColumn: "mapsId",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -271,14 +247,12 @@ namespace TuneEsportIFv2.Migrations
                 {
                     TrainingStatId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Records = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     mapKnowledge = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Smokes = table.Column<int>(type: "int", nullable: false),
                     Tactics = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EconomyKnowledge = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     mapsName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    mapsId = table.Column<int>(type: "int", nullable: true),
                     gamesgameID = table.Column<int>(type: "int", nullable: true),
                     TuneEsportIfv2User = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -290,12 +264,6 @@ namespace TuneEsportIFv2.Migrations
                         column: x => x.gamesgameID,
                         principalTable: "Games",
                         principalColumn: "gameID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_TrainingStats_Maps_mapsId",
-                        column: x => x.mapsId,
-                        principalTable: "Maps",
-                        principalColumn: "mapsId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -349,11 +317,6 @@ namespace TuneEsportIFv2.Migrations
                 column: "gamesgameID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ScoreBoard_mapsId",
-                table: "ScoreBoard",
-                column: "mapsId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ScoreBoard_TuneEsportIfv2UserId",
                 table: "ScoreBoard",
                 column: "TuneEsportIfv2UserId");
@@ -362,11 +325,6 @@ namespace TuneEsportIFv2.Migrations
                 name: "IX_TrainingStats_gamesgameID",
                 table: "TrainingStats",
                 column: "gamesgameID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TrainingStats_mapsId",
-                table: "TrainingStats",
-                column: "mapsId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -387,7 +345,7 @@ namespace TuneEsportIFv2.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Info");
+                name: "Maps");
 
             migrationBuilder.DropTable(
                 name: "Roles");
@@ -403,9 +361,6 @@ namespace TuneEsportIFv2.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Maps");
 
             migrationBuilder.DropTable(
                 name: "Games");

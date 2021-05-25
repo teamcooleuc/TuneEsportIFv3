@@ -10,7 +10,7 @@ using TuneEsportIFv2.Data;
 namespace TuneEsportIFv2.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210524091212_1")]
+    [Migration("20210525135244_1")]
     partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -164,6 +164,9 @@ namespace TuneEsportIFv2.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("ClubName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -213,8 +216,8 @@ namespace TuneEsportIFv2.Migrations
                     b.Property<byte[]>("ProfilePicture")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<int>("Rank")
-                        .HasColumnType("int");
+                    b.Property<string>("Rank")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -224,9 +227,6 @@ namespace TuneEsportIFv2.Migrations
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
-
-                    b.Property<string>("Union")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
@@ -253,42 +253,12 @@ namespace TuneEsportIFv2.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("gameName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("gameID");
 
                     b.ToTable("Games");
-                });
-
-            modelBuilder.Entity("TuneEsportIFv2.Models.Info", b =>
-                {
-                    b.Property<int>("infoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("nick")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("profilPicture")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("rank")
-                        .HasColumnType("int");
-
-                    b.Property<string>("team")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("union")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("infoId");
-
-                    b.ToTable("Info");
                 });
 
             modelBuilder.Entity("TuneEsportIFv2.Models.Map", b =>
@@ -305,6 +275,7 @@ namespace TuneEsportIFv2.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("mapsName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("mapsId");
@@ -342,6 +313,9 @@ namespace TuneEsportIFv2.Migrations
                     b.Property<int>("Assist")
                         .HasColumnType("int");
 
+                    b.Property<string>("Bob")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
@@ -360,9 +334,6 @@ namespace TuneEsportIFv2.Migrations
                     b.Property<int?>("gamesgameID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("mapsId")
-                        .HasColumnType("int");
-
                     b.Property<string>("mapsName")
                         .HasColumnType("nvarchar(max)");
 
@@ -371,8 +342,6 @@ namespace TuneEsportIFv2.Migrations
                     b.HasIndex("TuneEsportIfv2UserId");
 
                     b.HasIndex("gamesgameID");
-
-                    b.HasIndex("mapsId");
 
                     b.ToTable("ScoreBoard");
                 });
@@ -390,9 +359,6 @@ namespace TuneEsportIFv2.Migrations
                     b.Property<string>("EconomyKnowledge")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Records")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("Smokes")
                         .HasColumnType("int");
 
@@ -408,17 +374,12 @@ namespace TuneEsportIFv2.Migrations
                     b.Property<string>("mapKnowledge")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("mapsId")
-                        .HasColumnType("int");
-
                     b.Property<string>("mapsName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TrainingStatId");
 
                     b.HasIndex("gamesgameID");
-
-                    b.HasIndex("mapsId");
 
                     b.ToTable("TrainingStats");
                 });
@@ -493,13 +454,7 @@ namespace TuneEsportIFv2.Migrations
                         .WithMany("scoreBoards")
                         .HasForeignKey("gamesgameID");
 
-                    b.HasOne("TuneEsportIFv2.Models.Map", "maps")
-                        .WithMany("ScoreBoards")
-                        .HasForeignKey("mapsId");
-
                     b.Navigation("games");
-
-                    b.Navigation("maps");
                 });
 
             modelBuilder.Entity("TuneEsportIFv2.Models.TrainingStats", b =>
@@ -508,13 +463,7 @@ namespace TuneEsportIFv2.Migrations
                         .WithMany()
                         .HasForeignKey("gamesgameID");
 
-                    b.HasOne("TuneEsportIFv2.Models.Map", "maps")
-                        .WithMany()
-                        .HasForeignKey("mapsId");
-
                     b.Navigation("games");
-
-                    b.Navigation("maps");
                 });
 
             modelBuilder.Entity("TuneEsportIFv2.Areas.Identity.Data.TuneEsportIfv2User", b =>
@@ -527,11 +476,6 @@ namespace TuneEsportIFv2.Migrations
                     b.Navigation("maps");
 
                     b.Navigation("scoreBoards");
-                });
-
-            modelBuilder.Entity("TuneEsportIFv2.Models.Map", b =>
-                {
-                    b.Navigation("ScoreBoards");
                 });
 #pragma warning restore 612, 618
         }
