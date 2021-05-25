@@ -1,5 +1,8 @@
 ﻿@page
+@using TuneEsportIFv2.Areas.Identity.Data
 @model TuneEsportIFv2.Pages.Scoreboard.IndexModel
+@inject SignInManager<TuneEsportIfv2User> SignInManager
+@inject UserManager<TuneEsportIfv2User> UserManager
 
 @{
     ViewData["Title"] = "Index";
@@ -7,56 +10,66 @@
 }
 
 <h1>Index</h1>
-
 <p>
     <a asp-page="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.TrainingStat.mapsName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TrainingStat.EconomyKnowledge)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TrainingStat.Smokes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TrainingStat.Tactics)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TrainingStat.mapKnowledge)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TrainingStat.Date)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.TrainingStats) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.mapsName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EconomyKnowledge)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Smokes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tactics)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.mapKnowledge)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-        </tr>
+
+@{
+    foreach (var item1 in Model.RoleList)
+    {
+        if (item1.RoleName == "Admin" && item1.UserName == UserManager.GetUserName(User) || item1.RoleName == "Super admin" && item1.UserName == UserManager.GetUserName(User))
+        {
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TrainingStat.mapsName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TrainingStat.EconomyKnowledge)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TrainingStat.Smokes)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TrainingStat.Tactics)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TrainingStat.mapKnowledge)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TrainingStat.Date)
+                    </th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model.TrainingStats)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.mapsName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EconomyKnowledge)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Smokes)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tactics)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.mapKnowledge)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+    }
 }
-    </tbody>
-</table>

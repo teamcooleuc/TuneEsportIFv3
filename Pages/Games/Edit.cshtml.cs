@@ -25,11 +25,12 @@ namespace TuneEsportIFv2.Pages.Games
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            
             if (id == null)
             {
                 return NotFound();
             }
-
+            
             Game = await _context.Games.FirstOrDefaultAsync(m => m.gameID == id);
 
             if (Game == null)
@@ -49,7 +50,6 @@ namespace TuneEsportIFv2.Pages.Games
             }
 
             _context.Attach(Game).State = EntityState.Modified;
-
             try
             {
                 await _context.SaveChangesAsync();

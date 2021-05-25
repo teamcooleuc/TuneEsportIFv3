@@ -20,10 +20,12 @@ namespace TuneEsportIFv2.Pages.Scoreboard
         }
         public IList<TrainingStats> TrainingStats { get; set; }
         public TrainingStats TrainingStat { get; set; }
+        public List<Role> RoleList { get; set; }
 
         public async Task OnGetAsync()
         {
             TrainingStats = await _context.TrainingStats.ToListAsync();
+            RoleList = await _context.Roller.ToListAsync();
         }
     }
 }

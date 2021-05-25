@@ -1,5 +1,8 @@
 ﻿@page
+@using TuneEsportIFv2.Areas.Identity.Data
 @model TuneEsportIFv2.Pages.Games.IndexModel
+@inject SignInManager<TuneEsportIfv2User> SignInManager
+@inject UserManager<TuneEsportIfv2User> UserManager
 
 @{
     ViewData["Title"] = "Index";
@@ -7,11 +10,18 @@
 }
 
 <h1>Index</h1>
-
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
+@{
+    foreach (var item1 in Model.RoleList)
+    {
+        if (item1.RoleName == "Admin" && item1.UserName == UserManager.GetUserName(User) || item1.RoleName == "Super admin" && item1.UserName == UserManager.GetUserName(User))
+        {
+            <p>
+                <a asp-page="Create">Create New</a>
+            </p>
+        }
+    }
+}
+    <table class="table">
     <thead>
         <tr>
             <th>
@@ -21,17 +31,26 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Game) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.gameName)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.gameID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.gameID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.gameID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Game)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.gameName)
+                </td>
+            @{
+                foreach (var item1 in Model.RoleList)
+                {
+                    if (item1.RoleName == "Admin" && item1.UserName == UserManager.GetUserName(User) || item1.RoleName == "Super admin" && item1.UserName == UserManager.GetUserName(User))
+                    {
+                        <td>
+                            <a asp-page="./Edit" asp-route-id="@item.gameID">Edit</a> |
+                            <a asp-page="./Details" asp-route-id="@item.gameID">Details</a> |
+                            <a asp-page="./Delete" asp-route-id="@item.gameID">Delete</a>
+                        </td>
+                    }
+                }
+            }
+                </tr>
+        }
     </tbody>
 </table>

@@ -23,6 +23,8 @@ namespace TuneEsportIFv2.Pages.Scoreboard
         public List<ScoreBoard> ScoreBoards { get; set; }
         public List<Map> Maps { get; set; }
 
+        public List<Role> RoleList { get; set; }
+
 
         public dataModel(TuneEsportIFv2.Data.ApplicationDbContext context, UserManager<TuneEsportIfv2User> userManager)
         {
@@ -34,6 +36,7 @@ namespace TuneEsportIFv2.Pages.Scoreboard
         {
             Maps = await _context.Maps.ToListAsync();
             ScoreBoards = await _context.ScoreBoards.ToListAsync();
+            RoleList = await _context.Roller.ToListAsync();
 
             return Page();
         }

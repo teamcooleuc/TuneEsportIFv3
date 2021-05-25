@@ -58,63 +58,70 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    
-    
-    
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.ScoreBoards[0].Kills)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ScoreBoards[0].Death)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ScoreBoards[0].Assist)
-                </th>
-                <th>
-                    KDA
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ScoreBoards[0].mapsName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ScoreBoards[0].Date)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        @foreach (var item in Model.ScoreBoards)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Kills)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Death)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Assist)
-                </td>
-                <td>
-                    
-
-
-                    @{
-                        double Calculation;
-                    }
-                    @(Calculation = (item.Kills / item.Death))
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.mapsName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date.Date)
-                </td>
-            </tr>
-        }
-        </tbody>
-    </table>
 }
+    
+    @{
+        foreach (var item1 in Model.RoleList)
+        {
+            if (item1.RoleName == "Admin" && item1.UserName == UserManager.GetUserName(User) || item1.RoleName == "Super admin" && item1.UserName == UserManager.GetUserName(User))
+            {
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ScoreBoards[0].Kills)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ScoreBoards[0].Death)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ScoreBoards[0].Assist)
+                        </th>
+                        <th>
+                            KDA
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ScoreBoards[0].mapsName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ScoreBoards[0].Date)
+                        </th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model.ScoreBoards)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Kills)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Death)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Assist)
+                            </td>
+                            <td>
+
+
+
+                                @{
+                                    double Calculation;
+                                }
+                                @(Calculation = (item.Kills / item.Death))
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.mapsName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date.Date)
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            }
+        }
+        }

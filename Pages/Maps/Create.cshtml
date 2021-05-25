@@ -1,47 +1,55 @@
 ﻿@page
 @using TuneEsportIFv2.Areas.Identity.Data
 @model TuneEsportIFv2.Pages.Maps.CreateModel
+@inject SignInManager<TuneEsportIfv2User> SignInManager
+@inject UserManager<TuneEsportIfv2User> UserManager
 
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
+@{
+    foreach (var item1 in Model.RoleList)
+    {
+        if (item1.RoleName == "Admin" && item1.UserName == UserManager.GetUserName(User) || item1.RoleName == "Super admin" && item1.UserName == UserManager.GetUserName(User))
+        {
+            <h1>Create</h1>
 
-<h1>Create</h1>
+            <h4>Map</h4>
+            <hr/>
+            <div class="row">
+                <div class="col-md-4">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Map.gameName" class="control-label"></label>
+                            <select asp-for="Map.gameName">
 
-<h4>Map</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Map.gameName" class="control-label"></label>
-                <select asp-for="Map.gameName">
-
-                    @foreach (var item in Model.Games)
-                    {
-                        <option value="@item.gameName">@item.gameName </option>
-                    }
-                </select>
-                <span asp-validation-for="Map.gameName" class="text-danger"></span>
+                                @foreach (var item in Model.Games)
+                                {
+                                    <option value="@item.gameName">@item.gameName </option>
+                                }
+                            </select>
+                            <span asp-validation-for="Map.gameName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Map.mapsName" class="control-label"></label>
+                            <input asp-for="Map.mapsName" class="form-control"/>
+                            <span asp-validation-for="Map.mapsName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary"/>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Map.mapsName" class="control-label"></label>
-                <input asp-for="Map.mapsName" class="form-control" />
-                <span asp-validation-for="Map.mapsName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }
+    }
 }
+    <div>
+        <a asp-page="Index">Back to List</a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

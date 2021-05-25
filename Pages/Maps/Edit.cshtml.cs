@@ -22,9 +22,11 @@ namespace TuneEsportIFv2.Pages.Maps
 
         [BindProperty]
         public Map Map { get; set; }
+        public List<Game> Games { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            Games = await _context.Games.ToListAsync();
             if (id == null)
             {
                 return NotFound();

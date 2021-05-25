@@ -20,9 +20,11 @@ namespace TuneEsportIFv2.Pages.Maps
         }
 
         public IList<Map> Map { get;set; }
+        public List<Role> RoleList { get; set; }
 
         public async Task OnGetAsync()
         {
+            RoleList = await _context.Roller.ToListAsync();
             Map = await _context.Maps.ToListAsync();
         }
     }
