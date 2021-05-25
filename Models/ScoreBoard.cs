@@ -29,5 +29,10 @@ namespace TuneEsportIFv2.Models
         public Game games { get; set; }
         [Display(Name = "User")]
         public string TuneEsportIfv2User  { get; set; }
+
+       //public string NEWNEW { get; set; }
+
+
+        
     }
 }

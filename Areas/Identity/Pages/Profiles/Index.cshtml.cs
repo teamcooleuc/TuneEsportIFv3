@@ -25,7 +25,6 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
         private readonly UserManager<TuneEsportIfv2User> _userManager;
         private readonly TuneEsportIFv2.Data.ApplicationDbContext _context;
 
-        public TuneEsportIfv2User EsportUser { get; set; }    
 
             [BindProperty]
 
@@ -36,6 +35,7 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
             public List<ScoreBoard> ScoreBoard { get; set; }
 
 
+            public List<TuneEsportIfv2User> NEWNEW { get; set; }
 
             public string TuneEsportIfv2User { get; set; }
 
@@ -106,6 +106,9 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
             await LoadAsync(user);
             Games = await _context.Games.ToListAsync();
             ScoreBoard = await _context.ScoreBoards.ToListAsync();
+
+            //
+            NEWNEW = await _context.TuneEsportIfv2Users.ToListAsync();
             return Page();
         }
 
