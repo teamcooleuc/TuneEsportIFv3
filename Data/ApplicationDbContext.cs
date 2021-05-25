@@ -23,7 +23,7 @@ namespace TuneEsportIFv2.Data
         public virtual DbSet<ScoreBoard> ScoreBoards { get; set; }
 
         public virtual DbSet<Role> Roller { get; set; }
-        public virtual DbSet<TrainingStats> TrainingStats { get; set; }
+        public virtual DbSet<TrainingStat> TrainingStats { get; set; }
 
         public virtual DbSet<TuneEsportIfv2User> TuneEsportIfv2Users { get; set; }
 
