@@ -143,7 +143,12 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
             await _userManager.UpdateAsync(user);
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
-            //return RedirectToPage("/Profiles/Index");
+
+            var returnUrl = Url.Content("~/Identity/Profiles");
+            return LocalRedirect(returnUrl);
+
+
+            //return RedirectToPage("~/Identity/Profiles");
 
             //return RedirectToPage("/Account/Profiles", new { area = "Identity" });
 
