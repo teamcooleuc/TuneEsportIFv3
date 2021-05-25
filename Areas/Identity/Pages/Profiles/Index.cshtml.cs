@@ -147,13 +147,6 @@ namespace TuneEsportIFv2.Areas.Identity.Pages.Profiles
             var returnUrl = Url.Content("~/Identity/Profiles");
             return LocalRedirect(returnUrl);
 
-
-            //return RedirectToPage("~/Identity/Profiles");
-
-            //return RedirectToPage("/Account/Profiles", new { area = "Identity" });
-
-            //return RedirectToPage("~/Areas/Identity/Pages/Profiles/Index.cshtml");
-
         }
     }
     }
