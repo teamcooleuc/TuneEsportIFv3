@@ -76,7 +76,9 @@ namespace TuneEsportIFv2.Pages.Scoreboard
             await _context.ScoreBoards.AddAsync(ScoreBoard);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./data");
+            //return RedirectToPage("./data");
+            var returnUrl = Url.Content("~/Identity/Profiles");
+            return LocalRedirect(returnUrl);
         }
     }
 }

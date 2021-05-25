@@ -1,0 +1,71 @@
+﻿@page
+@inject SignInManager<TuneEsportIfv2User> signInManager
+@inject UserManager<TuneEsportIfv2User> userManager
+@using TuneEsportIFv2.Areas.Identity.Data
+@using System.Security.Cryptography.X509Certificates
+@using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal
+@using Microsoft.CodeAnalysis.Differencing
+@model TuneEsportIFv2.Areas.Identity.Pages.Profiles.IndexModel
+@*@model TuneEsportIFv2.Pages.Top10Model*@
+@{
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NEWNEW[0].Nick)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScoreBoard[0].Kills)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScoreBoard[0].Death)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScoreBoard[0].Assist)
+            </th>
+            <th>
+                KDA
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        <div class="col-8">
+            <div class="tab-content" id="nav-tabContent">
+                @foreach (var item2 in Model.NEWNEW)
+                {
+                    <th>
+                        @Html.DisplayFor(modelItem => item2.Nick)
+                    </th>
+
+                    foreach (var item in Model.ScoreBoard)
+                    {
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Kills)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Death)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Assist)
+                        </td>
+                        <td>
+                            @{
+                                double Calculation;
+                            }
+                            @(Calculation = (item.Kills / item.Death))
+                        </td>
+
+                    </tr>
+                    }
+                }
+            </div>
+        </div>
+</table>
