@@ -76,6 +76,9 @@
                             @Html.DisplayNameFor(model => model.ScoreBoards[0].Death)
                         </th>
                         <th>
+                            @Html.DisplayNameFor(model => model.ScoreBoards[0].Assist)
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.ScoreBoards[0].FullName)
                         </th>
                         <th>
@@ -101,16 +104,17 @@
                                 @Html.DisplayFor(modelItem => item.Death)
                             </td>
                             <td>
+                                @Html.DisplayFor(modelItem => item.Assist)
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.FullName)
                             </td>
                             <td>
 
-
-
                                 @{
                                     double Calculation;
                                 }
-                                @(Calculation = (item.Kills / item.Death))
+                                @(Calculation = (item.Kills + item.Assist / item.Death))
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.mapsName)

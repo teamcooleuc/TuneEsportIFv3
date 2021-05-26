@@ -26,7 +26,7 @@ namespace TuneEsportIFv2.Pages.Scoreboard
 
         public List<TrainingStats> TrainingStats { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(double? id)
         {
             if (id == null)
             {
@@ -72,7 +72,7 @@ namespace TuneEsportIFv2.Pages.Scoreboard
             return RedirectToPage("./Index");
         }
 
-        private bool ScoreBoardExists(int id)
+        private bool ScoreBoardExists(double id)
         {
             return _context.ScoreBoards.Any(e => e.ScoreId == id);
         }

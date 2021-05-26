@@ -16,11 +16,11 @@ namespace TuneEsportIFv2.Models
         [Display(Name = "Score Id")]
         public int ScoreId { get; set; }
         [Display(Name = "Kills")]
-        public int Kills { get; set; }
+        public double Kills { get; set; }
         [Display(Name = "Death")]
-        public int Death { get; set; }
+        public double Death { get; set; }
         [Display(Name = "Assist")]
-        public int Assist { get; set; }
+        public double Assist { get; set; }
         [Display(Name = "Maps name")]
         public string mapsName { get; set; }
         [Display(Name = "Date")]
