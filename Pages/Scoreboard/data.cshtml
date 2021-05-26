@@ -114,7 +114,7 @@
                                 @{
                                     double Calculation;
                                 }
-                                @(Calculation = (item.Kills + item.Assist / item.Death))
+                                @(Calculation = (item.Kills + item.Assist) / (item.Death))
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.mapsName)

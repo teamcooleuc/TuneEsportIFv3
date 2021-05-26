@@ -202,7 +202,7 @@
                                     @{
                                         double Calculation;
                                     }
-                                    @(Calculation = (item.Kills / item.Death))
+                                    @(Calculation = (item.Kills + item.Assist) / (item.Death))
                                 </td>
 
                             </tr>
