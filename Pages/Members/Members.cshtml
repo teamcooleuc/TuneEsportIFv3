@@ -16,26 +16,21 @@
 
 <h1>All Users</h1>
 
-
-
-
 <table class="table">
-    >
     <thead>
         <tr>
             <th>
                 Navn
             </th>
             <th>
-                Nick
+                @Html.DisplayNameFor(modelItem => Model.Input.Nick)
             </th>
             <th>
-                Team
+                @Html.DisplayNameFor(modelItem => Model.Input.Team)
             </th>
             <th>
-                Union
+                @Html.DisplayNameFor(modelItem => Model.Input.ClubName)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -55,7 +50,20 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.ClubName)
                 </td>
-            </tr>
+            @{
+                foreach (var item1 in Model.RoleList)
+                {
+                    if (item1.RoleName == "Admin" && item1.UserName == UserManager.GetUserName(User) || item1.RoleName == "Super admin" && item1.UserName == UserManager.GetUserName(User))
+                    {
+                            <td>
+                                <form asp-page-handler="DeleteUser" asp-route-id="@item.Id" method="post">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                    }
+                }
+            }
+                </tr>
         }
     </tbody>
 </table>

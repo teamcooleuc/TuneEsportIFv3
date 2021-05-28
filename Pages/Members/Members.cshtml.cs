@@ -20,6 +20,9 @@ namespace TuneEsportIFv2.Pages.Members
         public List<Game> Games { get; set; }
 
         public Role Role { get; set; }
+        public Areas.Identity.Pages.Profiles.IndexModel.InputModel Input { get; set; }
+
+        public List<Areas.Identity.Pages.Profiles.IndexModel.InputModel> Inputs { get; set; }
 
         public List<ScoreBoard> ScoreBoards { get; set; }
         public List<Role> RoleList { get; set; }
